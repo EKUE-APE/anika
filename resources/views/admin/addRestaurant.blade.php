@@ -26,20 +26,14 @@
                         <h4>Crée Une Référence</h4>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12 col-sm-12 text-center">
+                        <div class="col-md-12 col-sm-12 text">
                             <button type="submit" class="btn theme-btn">Créer une entrée</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 text-center">
                             <button type="submit" class="btn theme-btn">Créer un plat</button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12 col-sm-12 text-center">
+                            
                             <button type="submit" class="btn theme-btn">Créer un dessert</button>
                         </div>
                     </div>
+                 
                     
                     <div class="card-body">
                         <form class="form-horizontal" method="POST" action="">

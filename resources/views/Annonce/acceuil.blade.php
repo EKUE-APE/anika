@@ -67,7 +67,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Hôtel</h3>
                             <p class="intro">Check How To install and Launch it.</p>
-                            <a class="link" href="start.html"><span></span></a>
+                            <a class="link" href="{{ url('addHotel') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
 					<div class="item item-orange col-md-4 col-sm-6 col-xs-6">
@@ -77,7 +77,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Auberge</h3>
                             <p class="intro">check how to use common settings like: paddings, margins, height, Line Heigh and more.</p>
-                            <a class="link" href="global.html"><span></span></a>
+                            <a class="link" href="{{ url('addAuberge') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
                     <div class="item item-pink item-2 col-md-4 col-sm-6 col-xs-6">
@@ -87,7 +87,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Logements Meublés</h3>
                             <p class="intro">In this design There are multiple components are available check how to use it.</p>
-                            <a class="link" href="components.html"><span></span></a>
+                            <a class="link" href="{{ url('addLogement') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
 
@@ -100,7 +100,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Restaurants</h3>
                             <p class="intro">find All code structure how to edit and write code of any section.</p>
-                            <a class="link" href="code-structure.html"><span></span></a>
+                            <a class="link" href="{{ url('addRestaurant') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
                     <div class="item item-purple col-md-4 col-sm-6 col-xs-6">

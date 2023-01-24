@@ -19,6 +19,9 @@
 		
 		<!-- BOOTSTRAP STYLES-->
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.css" integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     
 		<!-- FONTAWESOME STYLES-->
 		<link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" />
@@ -56,7 +59,8 @@
 		@include('layout.slidebar')
 		  @include('layout.navbar')
 		<div id="wrapper">
-		
+			@include('sweetalert::alert')
+
             @yield('section')
 
             
@@ -91,6 +95,11 @@
 		<script src="{{ asset('assets/js/dropzone.js') }}"></script>
 		<!-- CUSTOM SCRIPTS -->
 		<script src="{{ asset('assets/js/custom.js') }}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.js" integrity="sha512-vCI1Ba/Ob39YYPiWruLs4uHSA3QzxgHBcJNfFMRMJr832nT/2FBrwmMGQMwlD6Z/rAIIwZFX8vJJWDj7odXMaw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.js" integrity="sha512-dWgIvDgjog3N60yT9nUdZkV/hLZeDMmxXyO/dhf8E/Zwgs9qZ0aop518pj0IEKhTUojPKqkzqPqrmyr6VnnE9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.js" integrity="sha512-RurNlBV74Iag8VNau1fWFMhv73YfMw8dwbwtaJQDoWwRoYT0qzlYvBsEWtpEV+gWRr4MwHlPpmOinUOLnaJH5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
        
 		@yield('js')
 		

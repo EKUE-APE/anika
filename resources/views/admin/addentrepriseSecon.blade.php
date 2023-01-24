@@ -27,6 +27,16 @@
                     </div>
                     
                     <div class="card-body">
+                        @if (Session::has('message'))
+
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;>
+
+                            </button>
+                       {{ $message }}
+                        </div>
+
+                        @endif
                         <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeEntreprise') }}">
                         @csrf
                             <div class="form-group">
@@ -133,7 +143,7 @@
                                 <div class="col-md-10 col-sm-9">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_name" />
+                                        <input type="file" name="image_name" required />
                                     </label>
                                 </div>
                             </div>
@@ -259,7 +269,15 @@ xmlhttp.open("get","")
     }
     
 </script>
-
+@if (Session::has(''))
+<script type="text/javascript">
+    
+        swal("Entreprise Enrégistrée avec Succes","{!! Session::get('') !!}","succes",{
+            button:"OK",
+        })
+    
+</script>
+@endif
 
 <script type="text/javascript">
     console.log("azyui");
@@ -276,6 +294,30 @@ xmlhttp.open("get","")
                 for (var i = 0; i < data.length; i++) {
     
                     $('#city_id').append('<option value="'+data[i].id+'">'+data[i].nom+'</option>')
+                }
+    
+            }, 
+            error: function (data) {
+                console.log("erreur")
+            },
+        })
+    })
+
+
+    $('#city_id').on('change',function ( ) {
+        //
+        console.log("uty");
+        console.log($('#city_id').val());
+        $.ajax({
+            url: '/recupererquartie-' + $('#city_id').val(),
+            type: "get",
+            success: function (data) {
+                $('#nomq').empty();
+                $('#nomq').append('<option value=""></option>')
+    
+                for (var i = 0; i < data.length; i++) {
+    
+                    $('#nomq').append('<option value="'+data[i].id+'">'+data[i].nomq+'</option>')
                 }
     
             }, 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,10 @@ Route::get('/addNameRefe', 'App\Http\Controllers\AdminController@addNameRefe')->
 Route::get('/recuperernomRef-{id}', 'App\Http\Controllers\AdminController@produit');
 Route::get('/recupererquartier-{id}', 'App\Http\Controllers\AdminController@quartier');
 
+Route::get('/recupererquartie-{id}', 'App\Http\Controllers\AdminController@quartie');
+
+Route::get('/recupereraddEntre-{id}', 'App\Http\Controllers\AdminController@advilleQuartier');
+
 Route::post('/storeReference', 'App\Http\Controllers\AdminController@storeReference')->name('storeReference');
 Route::get('/allReference', 'App\Http\Controllers\AdminController@allReference')->name('allReference');
 
@@ -73,3 +78,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/acces', [App\Http\Controllers\AnnonceController::class, 'acces'])->name('acces');
+Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHotel'])->name('addHotel');
+Route::get('/addAuberge', [App\Http\Controllers\AnnonceController::class, 'addAuberge'])->name('addAuberge');
+Route::get('/addLogement', [App\Http\Controllers\AnnonceController::class, 'addLogement'])->name('addLogement');
+
+
+

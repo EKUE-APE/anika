@@ -57,7 +57,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Ville :</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="name" id="name">
+                                    <select class="form-control" name="city_id" id="city_id">
                                         <optgroup label="Choisir le nom de la reference">
 
                                         </optgroup>
@@ -71,7 +71,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Nom du quartier:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control"  name="nom" placeholder="Vakpo ............">
+                                    <input type="text" class="form-control"  name="nomq" placeholder="Vakpo ............">
                                 </div>
                             </div>
                             
@@ -99,6 +99,8 @@
     <script type="text/javascript">
 console.log("hi");
 $('#county_id').on('change',function ( ) {
+    
+    console.log($('#county_id').val());
     $.ajax({
         url: '/recupererville-' + $('#county_id').val(),
         type: "get",
@@ -108,7 +110,7 @@ $('#county_id').on('change',function ( ) {
 
             for (var i = 0; i < data.length; i++) {
 
-                $('#city_id').append('<option value="'+data[i].nom+'">'+data[i].nom+'</option>')
+                $('#city_id').append('<option value="'+data[i].id+'">'+data[i].nom+'</option>')
             }
 
         }, 

@@ -73,7 +73,7 @@ class AdminController extends Controller
         $user->save();
         //dd('salut');
 
-        return redirect()->route('addentre')->with('success','Entreprise bien enrégistrer');
+        return redirect()->route('acces')->with('success','Entreprise bien enrégistrer');
     }
 
 
@@ -158,6 +158,27 @@ class AdminController extends Controller
             ->get();
         return $produits;
     }
+    
+    public function advilleQuartier($id)
+    {
+        echo"salut";
+        $produits=DB::table('cities')
+            ->where ('county_id', '=', $id)
+            ->get();
+        return $produits;
+       /*  $produit=DB::table('quartiers')
+            ->where ('city_id', '=', $id)
+            ->get(); */
+            //echo"salut";
+    }
+    public function quartie($id)
+    {
+        $produits=DB::table('quartiers')
+            ->where ('city_id', '=', $id)
+            ->get();
+        return $produits;
+    }
+    
     public function addRestaurant()
 
     {
@@ -308,8 +329,8 @@ class AdminController extends Controller
     }
     public function ville($id)
     {
-        $ville=DB::table('city')
-            ->where ('country_id', '=', $id)
+        $ville=DB::table('cities')
+            ->where ('county_id', '=', $id)
             ->get();
         return $ville;
     }
