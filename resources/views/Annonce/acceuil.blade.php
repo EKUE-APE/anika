@@ -130,7 +130,7 @@
                             <div class="icon-holder">
                                 <i class="icon fa fa-paper-plane"></i>
                             </div><!--//icon-holder-->
-                            <h3 class="title">Hôtel</h3>
+                            <h3 class="title">Boîte de Nuit</h3>
                             <p class="intro">Check How To install and Launch it.</p>
                             <a class="link" href="start.html"><span></span></a>
                         </div><!--//item-inner-->
@@ -140,7 +140,7 @@
                             <div class="icon-holder">
                                 <span aria-hidden="true" class="icon icon_gift"></span>
                             </div><!--//icon-holder-->
-                            <h3 class="title">Auberge</h3>
+                            <h3 class="title">Bars</h3>
                             <p class="intro">check how to use common settings like: paddings, margins, height, Line Heigh and more.</p>
                             <a class="link" href="global.html"><span></span></a>
                         </div><!--//item-inner-->
@@ -150,7 +150,7 @@
                             <div class="icon-holder">
                                 <span aria-hidden="true" class="icon icon_puzzle_alt"></span>
                             </div><!--//icon-holder-->
-                            <h3 class="title">Logements Meublés</h3>
+                            <h3 class="title">Location de Véhicule</h3>
                             <p class="intro">In this design There are multiple components are available check how to use it.</p>
                             <a class="link" href="components.html"><span></span></a>
                         </div><!--//item-inner-->
