@@ -99,7 +99,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.js" integrity="sha512-dWgIvDgjog3N60yT9nUdZkV/hLZeDMmxXyO/dhf8E/Zwgs9qZ0aop518pj0IEKhTUojPKqkzqPqrmyr6VnnE9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.js" integrity="sha512-RurNlBV74Iag8VNau1fWFMhv73YfMw8dwbwtaJQDoWwRoYT0qzlYvBsEWtpEV+gWRr4MwHlPpmOinUOLnaJH5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+		<script src="https://cdn.datatables.net/plug-ins/1.13.1/i18n/fr-FR.json" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
        
 		@yield('js')
 		

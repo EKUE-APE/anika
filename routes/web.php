@@ -82,5 +82,6 @@ Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHote
 Route::get('/addAuberge', [App\Http\Controllers\AnnonceController::class, 'addAuberge'])->name('addAuberge');
 Route::get('/addLogement', [App\Http\Controllers\AnnonceController::class, 'addLogement'])->name('addLogement');
 
+Route::post('/storeHotel', [App\Http\Controllers\AnnonceController::class, 'storeHotel'])->name('storeHotel');
 
 

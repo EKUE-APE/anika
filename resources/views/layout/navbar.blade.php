@@ -11,19 +11,19 @@
             </li>
             
             <li>
-                <a href="javascript:void(0)"><i class="fa fa-clone" aria-hidden="true"></i>Restauration <span class="fa arrow"></span></a>
+                <a href="javascript:void(0)"><i class="fa fa-clone" aria-hidden="true"></i>Gestion annonces <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level">
                     <li>
-                        <a href="{{ url('addRestaurant') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un Restaurant</a>
+                        <a href=""><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Recherche</a>
                     </li>
                     <li>
-                        <a href="{{ url('addplat') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un plat</a>
+                        <a href="{{ route('acces') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter une Annonce</a>
                     </li>
                     <li>
-                        <a href="{{ url('adddessert') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un dessert</a>
+                        <a href=""><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un dessert</a>
                     </li>
                    <li>
-                        <a href="{{ url('addentree') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter une entrée</a>
+                        <a href=""><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter une entrée</a>
                     </li>
                 </ul>
             </li>

@@ -7,7 +7,7 @@ use App\Models\Maneref;
 use App\Models\ValueReference;
 use App\Models\Country;
 use App\Models\City;
-use App\Models\Quartier;
+use App\Models\Hotel;
 use App\Models\Company;
 use Illuminate\Http\Request;
 
@@ -36,7 +36,7 @@ class AnnonceController extends Controller
         $entreprises = DB::table('companies')
         ->where('user_id','=',Auth::user()->id)
         ->get();
-        return view('Annonce.addHotel',compact('entreprises','comodites',''));
+        return view('Annonce.addHotell',compact('entreprises','comodites'));
     }
     public function addAuberge()
     {
@@ -47,38 +47,37 @@ class AnnonceController extends Controller
         return view('Annonce.addLogement');
         
     }
-    public function storeEntreprise(Request $request)
+    public function storeHotel(Request $request)
     {
-        $user = new Company;
+        $user = new Hotel;
 
         $user->name = $request->input('name');
 
         $user->description = $request->input('description');
-        $user->user_id =Auth::user()->id;
 
-        $user->valeurajout = $request->valeurajout;
-        $user->nomq = $request->nomq;
-        $user->city_id = $request->city_id;
-        $user->contactEmail = $request->input('contactEmail');
-        $user->instagram = $request->input('instagram');
-        $user->phoneWhat = $request->input('phoneWhat');
-        $user->phone = $request->input('phone');
+        $user->name = $request->name;
+        $user->type_heberg = $request->type_heberg;
+        $user->service = $request->service;
+        $user->nbreChambre = $request->input('nbreChambre');
+        $user->superficie = $request->input('superficie');
+        $user->nbreChambre = $request->input('nbreChambre');
+        $user->price_min = $request->input('price_min');
 
         //$user->image_name = $request->input('image_name');
         
-        $user->latitude = $request->input('latitude');
-        $user->longitude = $request->input('longitude');
+        $user->prixmax = $request->input('prixmax');
+        $user->nbrePersonne = $request->input('nbrePersonne');
         //dd($request);
-        $filename =time() . '.' . $request->file('image_name')->extension();
+        $filename =time() . '.' . $request->file('image_p')->extension();
         //dd($filename);
-        $path = $request->file('image_name')->storeAs('Logo',$filename,'public');
+        $path = $request->file('image_p')->storeAs('LogoHotel',$filename,'public');
     
-        $user->image_name = $path;
+        $user->image_p = $path;
         //dd($user);
         $user->save();
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Entreprise bien enrégistrer');
+        return redirect()->route('acces')->with('success','Hotel bien enrégistrer');
     }
 
  

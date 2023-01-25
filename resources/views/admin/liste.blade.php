@@ -9,7 +9,7 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li><a href="index.html">Dashboard</a></li>
-                <li class="active">All Listing</li>
+                <li class="active">Comptes</li>
             </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -28,7 +28,7 @@
                     
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example" class="table table-striped table-2 table-hover">
+                            <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
                                 <thead>
                                     <tr>
                                         <th>Noms</th>						
@@ -58,7 +58,7 @@
                                     </tr>
                                     @endforeach
                                    
-                                    <div class="card-footer">
+                              {{--       <div class="card-footer">
                                         <nav aria-label="Page navigation example">
                                             <tr>
                                                 <th>Noms</th>						
@@ -67,7 +67,7 @@
                                                 <th>Action</th>
                                             </tr>
                                         </nav>
-                                    </div>
+                                    </div> --}}
                                     
                                 </tbody>
                             </table>
@@ -86,14 +86,43 @@
 
 @section('js')
 <script>
-    $(document).ready(function() {
+   /*  $(document).ready(function() {
 $('#example').DataTable();
 } );
     var modal = $('.Recherche');
     $('.logo').click(function() {
         modal.show();
+    }); */
+    $(document).ready(function(){
+        $('#example').DataTable({
+            "order": [[ 0, "desc" ]],
+            "pageLength":50,
+            "oLanguage": {
+                
+                "sProcessing":     "Traitement en cours...",
+                "sSearch":         "Rechercher&nbsp;:",
+                "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+                "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
+                "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
+                "sInfoPostFix":    "",
+                "sLoadingRecords": "Chargement en cours...",
+                "sZeroRecords":    "Aucun &eacute;l&eacute;ment &agrave; afficher",
+                "sEmptyTable":     "Aucune donn&eacute;e disponible dans le tableau",
+                "oPaginate": {
+                    "sFirst":      "Premier",
+                    "sPrevious":   "Pr&eacute;c&eacute;dent",
+                    "sNext":       "Suivant",
+                    "sLast":       "Dernier"
+                },
+                
+                "oAria": {
+                    "sSortAscending":  ": activer pour trier la colonne par ordre croissant",
+                    "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
+                }
+            }
+        });
     });
-
 
 
     $(document).ready(function() {
