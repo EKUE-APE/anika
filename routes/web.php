@@ -78,10 +78,20 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::get('/acces', [App\Http\Controllers\AnnonceController::class, 'acces'])->name('acces');
-Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHotel'])->name('addHotel');
-Route::get('/addAuberge', [App\Http\Controllers\AnnonceController::class, 'addAuberge'])->name('addAuberge');
-Route::get('/addLogement', [App\Http\Controllers\AnnonceController::class, 'addLogement'])->name('addLogement');
 
+Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHotel'])->name('addHotel');
 Route::post('/storeHotel', [App\Http\Controllers\AnnonceController::class, 'storeHotel'])->name('storeHotel');
+
+Route::get('/addAuberge', [App\Http\Controllers\AnnonceController::class, 'addAuberge'])->name('addAuberge');
+Route::post('/storeAuberge', [App\Http\Controllers\AnnonceController::class, 'storeAuberge'])->name('storeAuberge');
+
+Route::get('/addLogement', [App\Http\Controllers\AnnonceController::class, 'addLogement'])->name('addLogement');
+Route::post('/storeLogement', [App\Http\Controllers\AnnonceController::class, 'storeLogement'])->name('storeLogement');
+
+Route::post('/storeRestaurant', [App\Http\Controllers\AnnonceController::class, 'storeRestaurant'])->name('storeRestaurant');
+Route::post('/storEntre', [App\Http\Controllers\AnnonceController::class, 'storEntre'])->name('storEntre');
+Route::post('/storePlat', [App\Http\Controllers\AnnonceController::class, 'storePlat'])->name('storePlat');
+
+
 
 

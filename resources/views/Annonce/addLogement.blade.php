@@ -5,12 +5,12 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Logements Meublés</h4>
+            <h4>Logement Meublés</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
                 <li><a href="index.html">Tableau de Bord</a></li>
-                <li class="active">Logements Meublés</li>
+                <li class="active">Logement Meublés</li>
             </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -23,18 +23,38 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>Crée ses Logements Meublés</h4>
+                        <h4>Crée son Logement Meublé</h4>
                     </div>
                     
                     <div class="card-body">
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="">
+                        @if (Session::has('message'))
+
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;>
+
+                            </button>
+                       {{ $message }}
+                        </div>
+
+                        @endif
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeLogement') }}">
                         @csrf
 
                         <div class="form-group">
-                            <label class="col-md-6 col-sm-4">Entreprise:</label>
-                            <div class="col-md-10 col-sm-9">
-                                <select class="form-control" id="country_id" name="country_id">
-                                    <optgroup label="Choisir La commodité">
+                            <label class="col-md-2 col-sm-2">Entreprise:</label>
+                            <div class="col-md-4 col-sm-3">
+                                <select class="form-control" id="name" name="name">
+                                    <optgroup label="Choisir Le nom de l'entreprise">
+                                        @foreach($entreprises as $companie)
+                                            <option value="{{$companie->id}}">{{$companie->name}}</option>
+                                        @endforeach
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <label class="col-md-2 col-sm-2">Type d'herbergement:</label>
+                            <div class="col-md-4 col-sm-3">
+                                <select class="form-control" id="type_heberg" name="type_heberg">
+                                    <optgroup label="Choisir LE TYPE">
                                        {{--  @foreach($pays as $pa)
                                             <option value="{{$pa->id}}">{{$pa->name}}</option>
                                         @endforeach --}}
@@ -42,57 +62,41 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-2 col-sm-3">Type d'herbergement:</label>
-                            <div class="col-md-10 col-sm-9">
-                                <select class="form-control" id="country_id" name="country_id">
-                                    <optgroup label="Choisir La commodité">
-                                     {{--    @foreach($pays as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->name}}</option>
-                                        @endforeach --}}
-                                    </optgroup>
-                                </select>
-                            </div>
-                        </div>
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Nombre de Chambre:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="number" class="form-control" placeholder="NumRod" name="name">
+                                <label class="col-md-2 col-sm-2">Nombre de Chambre:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" placeholder="5" name="nbreChambre">
+                                </div>
+                                <label class="col-md-2 col-sm-2">Superficie:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
                                 </div>
                             </div>
                             
+                            
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Superficie:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="number" class="form-control" name="phone" placeholder="+229 03294828">
+                                <label class="col-md-2 col-sm-2">Prix Min:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" name="price_min" placeholder="345678">        
+                                </div>
+                                <label class="col-md-2 col-sm-2">Prix Maximum :</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" name="prixmax" placeholder="10000000">
                                 </div>
                             </div>
                             
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Prix Min:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="number" class="form-control" name="phoneWhat" placeholder="Listing Hub Search Engine Friendly Directory">
-                                </div>
-                            </div>
+                            
                             
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Prix Maximum :</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="number" class="form-control" name="instagram" placeholder="Listing, Directory, Business..">
+                                <label class="col-md-2 col-sm-2">Nombre de Personnes:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" name="nbrePersonne" placeholder="8">
                                 </div>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Nombre de Personnes:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="number" class="form-control" name="email" placeholder="Listing Hub Search Engine Friendly Directory">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Services:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="country_id" name="country_id">
-                                        <optgroup label="Choisir La commodité">
+
+                                <label class="col-md-2 col-sm-2">Services:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <select class="form-control" id="service" name="service">
+                                        <optgroup label="Choisir Le Service">
                                             {{-- @foreach($pays as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->name}}</option>
                                             @endforeach --}}
@@ -102,20 +106,20 @@
                             </div>
                             
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Nombre de Salle de Bain:</label>
+                                <label class="col-md-2 col-sm-2">Nombre de Salle de Bain:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control" name="contactEmail" placeholder="support@listinghub.com">
+                                    <input type="text" class="form-control" name="nbreSalleBain" placeholder="2">
                                 </div>
                             </div> 
                             
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Description:</label>
+                                <label class="col-md-2 col-sm-2">Description:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <textarea class="form-control textarea height-100" name="description" placeholder="Description"></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Equipement salle de bain:</label>
+                                <label class="col-md-2 col-sm-2">Equipement salle de bain:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <select class="form-control" id="country_id" name="country_id">
                                         <optgroup label="Choisir La commodité">
@@ -130,18 +134,25 @@
                                 <label class="col-md-2 col-sm-3">Equipement Cuisine:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <select class="form-control" id="city_id" name="city_id">
-                                        <optgroup label="Choisir La ville">
+                                        <optgroup label="Choisir La cuisine">
                                             
                                         </optgroup>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Galerie d'Image :</label>
-                                <div class="col-md-10 col-sm-9">
+                                <label class="col-md-2 col-sm-2">Galerie d'Image :</label>
+                                <div class="col-md-4 col-sm-3">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_name" />
+                                        <input type="file" name="image_p" />
+                                    </label>
+                                </div>
+                                <label class="col-md-2 col-sm-2">Galerie d'Image :</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <label class="btn-bs-file btn">
+                                        Choisir
+                                        <input type="file" name="image_s" />
                                     </label>
                                 </div>
                             </div>                            
@@ -163,6 +174,15 @@
 
 @section('js')
 
+@if (Session::has('message'))
+<script type="text/javascript">
+    
+        swal("Hôtel Enrégistrée avec Succes","{!! Session::get('') !!}","succes",{
+            button:"OK",
+        })
+    
+</script>
+@endif
 <script type="text/javascript">
     console.log("azyui");
     $('#country_id').on('change',function ( ) {
