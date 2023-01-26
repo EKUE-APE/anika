@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Auberge;
 use App\Models\ValueReference;
 use App\Models\Logement;
-use App\Models\City;
+use App\Models\Patisserie;
 use App\Models\Hotel;
 use App\Models\Company;
 use Illuminate\Http\Request;
@@ -250,7 +250,89 @@ class AnnonceController extends Controller
 
         return redirect()->route('acces')->with('success','Hotel bien enrégistrer');
     }
+
+    public function addPatisserie()
+    {
+        $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('Annonce.addPatisserie',compact('entreprises','comodites'));
+    }
+
+    public function storePatisserie(Request $request)
+    {
+        $user = new Patisserie;
+
+        $user->name = $request->input('name');
+
+        $user->description = $request->input('description');
+
+        $user->name = $request->name;
+        $user->type_heberg = $request->type_heberg;
+        $user->service = $request->service;
+        $user->produit = $request->input('produit');
+        $user->ingredient = $request->ingredient;
+        $user->price_min = $request->input('price_min');
+
+        //$user->image_name = $request->input('image_name');
+        
+        $user->prixmax = $request->input('prixmax');
+        $user->accompagnement = $request->accompagnement;
+        //dd($request);
+        $filename =time() . '.' . $request->file('image_p')->extension();
+        //dd($filename);
+        $path = $request->file('image_p')->storeAs('Logopatel',$filename,'public');
     
+        $user->image_p = $path;
+        //dd($user);
+        $user->save();
+        //dd('salut');
+
+        return redirect()->route('acces')->with('success','Patisserie bien enrégistrer');
+    }
+    public function addBar()
+    {
+        $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('Annonce.addBar',compact('entreprises','comodites'));
+    } 
+     public function addBoite()
+    {
+        $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('Annonce.addBoite',compact('entreprises','comodites'));
+    }  
+    public function addFastFood()
+    {
+        $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('Annonce.addFastFood',compact('entreprises','comodites'));
+    }  
+    public function addLocation()
+    {
+        $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('Annonce.addLocation',compact('entreprises','comodites'));
+    }
 
  
 }

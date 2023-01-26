@@ -92,6 +92,12 @@ Route::post('/storeRestaurant', [App\Http\Controllers\AnnonceController::class, 
 Route::post('/storEntre', [App\Http\Controllers\AnnonceController::class, 'storEntre'])->name('storEntre');
 Route::post('/storePlat', [App\Http\Controllers\AnnonceController::class, 'storePlat'])->name('storePlat');
 
+Route::get('/addPatisserie', [App\Http\Controllers\AnnonceController::class, 'addPatisserie'])->name('addPatisserie');
+Route::post('/storePatisserie', [App\Http\Controllers\AnnonceController::class, 'storePatisserie'])->name('storePatisserie');
 
+Route::get('/addBar', [App\Http\Controllers\AnnonceController::class, 'addBar'])->name('addBar');
+Route::get('/addFastFood', [App\Http\Controllers\AnnonceController::class, 'addFastFood'])->name('addFastFood');
+Route::get('/addLocation', [App\Http\Controllers\AnnonceController::class, 'addLocation'])->name('addLocation');
+Route::get('/addBoite', [App\Http\Controllers\AnnonceController::class, 'addBoite'])->name('addBoite');
 
 

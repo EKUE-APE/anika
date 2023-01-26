@@ -26,11 +26,11 @@
                         <h4>Crée Une Référence</h4>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12 col-sm-12 text">
-                            <button type="submit" class="btn theme-btn">Créer une entrée</button>
-                            <button type="submit" class="btn theme-btn">Créer un plat</button>
+                        <div class="col-md-12 col-sm-12 text-center">
+                            <a type="button" href="{{ url('addentree') }}" class="btn theme-btn">Créer une entrée</a>
+                            <a type="button" href="{{ url('addplat') }}" class="btn theme-btn">Créer un plat</a>
                             
-                            <button type="submit" class="btn theme-btn">Créer un dessert</button>
+                            <a type="button" href="{{ url('adddessert') }}" class="btn theme-btn">Créer un dessert</a>
                         </div>
                     </div>
                  
@@ -68,7 +68,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Description:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control" name="description" value="description....">
+                                    <input type="text" class="form-control" name="description" placeholder="description....">
                                 </div>
                             </div>
                             <div class="form-group">

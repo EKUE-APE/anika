@@ -110,7 +110,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Fast Food</h3>
                             <p class="intro">check how to use map and location settings.</p>
-                            <a class="link" href="map.html"><span></span></a>
+                            <a class="link" href="{{ url('addFastFood') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
                     <div class="item item-primary col-md-4 col-sm-6 col-xs-6">
@@ -120,7 +120,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Patisseries</h3>
                             <p class="intro">how to use slick slider and customize.</p>
-                            <a class="link" href="sliding.html"><span></span></a>
+                            <a class="link" href="{{ url('addPatisserie') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
 
@@ -132,7 +132,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Boîte de Nuit</h3>
                             <p class="intro">Check How To install and Launch it.</p>
-                            <a class="link" href="start.html"><span></span></a>
+                            <a class="link" href="{{ url('addBoite') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
 					<div class="item item-orange col-md-4 col-sm-6 col-xs-6">
@@ -142,7 +142,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Bars</h3>
                             <p class="intro">check how to use common settings like: paddings, margins, height, Line Heigh and more.</p>
-                            <a class="link" href="global.html"><span></span></a>
+                            <a class="link" href="{{ url('addBar') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
                     <div class="item item-pink item-2 col-md-4 col-sm-6 col-xs-6">
@@ -152,7 +152,7 @@
                             </div><!--//icon-holder-->
                             <h3 class="title">Location de Véhicule</h3>
                             <p class="intro">In this design There are multiple components are available check how to use it.</p>
-                            <a class="link" href="components.html"><span></span></a>
+                            <a class="link" href="{{ url('addLocation') }}"><span></span></a>
                         </div><!--//item-inner-->
                     </div><!--//item-->
 
