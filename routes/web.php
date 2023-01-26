@@ -96,8 +96,16 @@ Route::get('/addPatisserie', [App\Http\Controllers\AnnonceController::class, 'ad
 Route::post('/storePatisserie', [App\Http\Controllers\AnnonceController::class, 'storePatisserie'])->name('storePatisserie');
 
 Route::get('/addBar', [App\Http\Controllers\AnnonceController::class, 'addBar'])->name('addBar');
+
+Route::post('/storeBar', [App\Http\Controllers\AnnonceController::class, 'storeBar'])->name('storeBar');
+
 Route::get('/addFastFood', [App\Http\Controllers\AnnonceController::class, 'addFastFood'])->name('addFastFood');
+
+Route::post('/storeFastFood', [App\Http\Controllers\AnnonceController::class, 'storeFastFood'])->name('storeFastFood');
+
+Route::post('/storeLocation', [App\Http\Controllers\AnnonceController::class, 'storeLocation'])->name('storeLocation');
 Route::get('/addLocation', [App\Http\Controllers\AnnonceController::class, 'addLocation'])->name('addLocation');
 Route::get('/addBoite', [App\Http\Controllers\AnnonceController::class, 'addBoite'])->name('addBoite');
 
+Route::post('/storeBoite', [App\Http\Controllers\AnnonceController::class, 'storeBoite'])->name('storeBoite');
 

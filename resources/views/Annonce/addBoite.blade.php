@@ -37,7 +37,7 @@
                         </div>
 
                         @endif
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeHotel') }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeBoite') }}">
                         @csrf
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Type de Bar:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="type_heberg" name="type_heberg">
+                                <select class="form-control" id="type_bar" name="type_bar">
                                     <optgroup label="Choisir LE TYPE">
                                        {{--  @foreach($pays as $pa)
                                             <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -65,11 +65,16 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Type de Musique:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" placeholder="5" name="nbreChambre">
-                                </div>
+                                    <select class="form-control" id="type_music" name="type_music">
+                                        <optgroup label="Choisir LE TYPE">
+                                           {{--  @foreach($pays as $pa)
+                                                <option value="{{$pa->id}}">{{$pa->name}}</option>
+                                            @endforeach --}}
+                                        </optgroup>
+                                    </select>                                </div>
                                 <label class="col-md-2 col-sm-2">Capacité D'acceuil:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
+                                    <input type="number" class="form-control" name="capacite" placeholder="03294828">
                                 </div>
                             </div>
                             
@@ -81,7 +86,7 @@
                                 </div>
                                 <label class="col-md-2 col-sm-2">Prix Maximum :</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="prixmax" placeholder="10000000">
+                                    <input type="number" class="form-control height-100" name="prixmax" placeholder="10000000">
                                 </div>
                             </div>
                             
@@ -92,7 +97,7 @@
                                 <div class="col-md-4 col-sm-3">
                                    
                                         <div class="col-md-10 col-sm-9">
-                                            <select class="form-control" id="country_id" name="country_id">
+                                            <select class="form-control" id="equipement_vie" name="equipement_vie">
                                                 <optgroup label="Choisir La commodité">
                                                    {{--  @foreach($pays as $pa)
                                                         <option value="{{$pa->id}}">{{$pa->name}}</option>

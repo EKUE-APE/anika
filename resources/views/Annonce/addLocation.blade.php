@@ -37,7 +37,7 @@
                         </div>
 
                         @endif
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeHotel') }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeLocation') }}">
                         @csrf
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Type de Véhicule:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="type_heberg" name="type_heberg">
+                                <select class="form-control" id="type_vehicule" name="type_vehicule">
                                     <optgroup label="Choisir LE TYPE">
                                        {{--  @foreach($pays as $pa)
                                             <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -71,12 +71,15 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Marque:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="nbrePersonne" placeholder="8">
-                                </div>
+                                    <select class="form-control" id="marque" name="marque">
+                                        <optgroup label="Choisir La cuisine">
+                                            
+                                        </optgroup>
+                                    </select>                                 </div>
 
                                 <label class="col-md-2 col-sm-2">Modèle:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="form-control" id="service" name="service">
+                                    <select class="form-control" id="model" name="model">
                                         <optgroup label="Choisir Le Service">
                                             {{-- @foreach($pays as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -101,17 +104,17 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Année:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" placeholder="5" name="nbreChambre">
+                                    <input type="number" class="form-control" placeholder="5" name="anne">
                                 </div>
                                 <label class="col-md-2 col-sm-2">Kilométrage:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
+                                    <input type="number" class="form-control" name="kilometrage" placeholder="03294828">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Type de carburant:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="country_id" name="country_id">
+                                    <select class="form-control" id="type_carburant" name="type_carburant">
                                         <optgroup label="Choisir La commodité">
                                            {{--  @foreach($pays as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -123,7 +126,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Boîte de vitesse:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="city_id" name="city_id">
+                                    <select class="form-control" id="type_vitesse" name="type_vitesse">
                                         <optgroup label="Choisir La cuisine">
                                             
                                         </optgroup>
@@ -133,12 +136,12 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Nombre de porte:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="text" class="form-control" name="nbreSalleBain" placeholder="2">
+                                    <input type="number" class="form-control" name="nbre_porte" placeholder="2">
                                 </div>
                                
                                 <label class="col-md-2 col-sm-2">Nombre de place :</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
+                                    <input type="number" class="form-control" name="nbre_place" placeholder="03294828">
                                 </div>
                             </div> 
 
@@ -146,18 +149,21 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Services:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" placeholder="5" name="nbreChambre">
-                                </div>
+                                    <select class="form-control" id="service" name="service">
+                                        <optgroup label="Choisir La cuisine">
+                                            
+                                        </optgroup>
+                                    </select>                                 </div>
                                 <label class="col-md-2 col-sm-2">Condition à remplir:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
+                                    <input type="text" class="form-control" name="condition" placeholder="03294828">
                                 </div>
                             </div>
                             <div class="form-group">
                                
                                 <label class="col-md-2 col-sm-3">Equipement Véhicule:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="city_id" name="city_id">
+                                    <select class="form-control" id="equip_vehicul" name="equip_vehicul">
                                         <optgroup label="Choisir La cuisine">
                                             
                                         </optgroup>

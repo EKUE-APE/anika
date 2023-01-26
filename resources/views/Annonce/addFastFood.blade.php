@@ -37,7 +37,7 @@
                         </div>
 
                         @endif
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storePatisserie') }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeFastFood') }}">
                         @csrf
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Produits Fast Food:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="type_heberg" name="type_heberg">
+                                <select class="form-control" id="type_produit_fast" name="type_produit_fast">
                                     <optgroup label="Choisir LE TYPE">
                                        {{--  @foreach($pays as $pa)
                                             <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Equipement Fast Food:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="city_id" name="city_id">
+                                    <select class="form-control" id="type_equipement" name="type_equipement">
                                         <optgroup label="Choisir La cuisine">
                                             
                                         </optgroup>

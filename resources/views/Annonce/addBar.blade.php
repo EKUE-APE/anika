@@ -37,7 +37,7 @@
                         </div>
 
                         @endif
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storePatisserie') }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeBar') }}">
                         @csrf
 
                         <div class="form-group">
@@ -53,7 +53,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Type de Bar:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="type_heberg" name="type_heberg">
+                                <select class="form-control" id="type_bar" name="type_bar">
                                     <optgroup label="Choisir LE TYPE">
                                        {{--  @foreach($pays as $pa)
                                             <option value="{{$pa->id}}">{{$pa->name}}</option>
@@ -78,7 +78,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Type de Musique:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="city_id" name="city_id">
+                                    <select class="form-control" id="type_musique" name="type_musique">
                                         <optgroup label="Choisir La cuisine">
                                             
                                         </optgroup>
@@ -88,7 +88,7 @@
                              <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Capacité d'Acceuil:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" placeholder="5" name="produit">
+                                    <input type="number" class="form-control" placeholder="5" name="capacite">
                                 </div>
                             
                             </div>
@@ -97,7 +97,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Equipement Vie Nocturne:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="form-control" id="accompagnement" name="accompagnement">
+                                    <select class="form-control" id="type_vie" name="type_vie">
                                         <optgroup label="Choisir Le Service">
                                             {{-- @foreach($pays as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->name}}</option>
