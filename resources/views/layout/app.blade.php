@@ -26,6 +26,8 @@
 		<!-- FONTAWESOME STYLES-->
 		<link href="{{ asset('assets/css/font-awesome.css') }}" rel="stylesheet" />
 		
+
+		
 		<!-- Line Font STYLES-->
 		<link href="{{ asset('assets/css/line-font.css') }}" rel="stylesheet" />
 		
@@ -100,7 +102,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.min.js" integrity="sha512-KfbhdnXs2iEeelTjRJ+QWO9veR3rm6BocSoNoZ4bpPIZCsE1ysIRHwV80yazSHKmX99DM0nzjoCZjsjNDE628w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.all.js" integrity="sha512-RurNlBV74Iag8VNau1fWFMhv73YfMw8dwbwtaJQDoWwRoYT0qzlYvBsEWtpEV+gWRr4MwHlPpmOinUOLnaJH5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script src="https://cdn.datatables.net/plug-ins/1.13.1/i18n/fr-FR.json" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-       
+		<script type="text/javascript" src="{{ asset ('assetss/plugins/jquery-match-height/jquery.matchHeight-min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset ('assetss/plugins/jquery-1.12.3.min.js') }}"></script>
+
 		@yield('js')
 		
 

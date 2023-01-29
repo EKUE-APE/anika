@@ -8,14 +8,20 @@ use App\Models\Bar;
 use App\Models\Logement;
 use App\Models\Patisserie;
 use App\Models\Hotel;
+
+use App\Models\Service;
+use App\Models\EquipementVie;
+
 use App\Models\Location;
 use App\Models\Boite;
+use App\Models\Image;
 
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Nette\Utils\Random;
 
 class AnnonceController extends Controller
 {
@@ -185,7 +191,7 @@ class AnnonceController extends Controller
     }
     public function storeDessert(Request $request)
     {
-        $user = new Restaurant;
+        $user = new Dessert;
 
         $user->owner_id = $request->input('name');
 
@@ -311,7 +317,7 @@ class AnnonceController extends Controller
 
         $user->name = $request->name;
 
-        $user->description = $request->description;
+        $user->description = $request->input('description');
 
         $user->type_musique = $request->type_musique;
         $user->type_bar = $request->type_bar;
@@ -341,10 +347,16 @@ class AnnonceController extends Controller
         $entreprises = DB::table('companies')
         ->where('user_id','=',Auth::user()->id)
         ->get();
-        $comodites = DB::table('value_references')
-        ->where('idname','=',8)
+        $equip_vie_noct = DB::table('value_references')
+        ->where('idname','=',9)
         ->get();
-        return view('Annonce.addBoite',compact('entreprises','comodites'));
+        $comodites = DB::table('value_references')
+        ->where('idname','=',9)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',9)
+        ->get();
+        return view('Annonce.addBoitee',compact('entreprises','equip_vie_noct','comodites'));
     }  
     public function storeLocation(Request $request)
     {
@@ -406,7 +418,7 @@ class AnnonceController extends Controller
         $user->ingredient = $request->ingredient;
         $user->accompagnement = $request->accompagnement;
         $user->service = $request->service;
-        $user->description = $request->description;
+        $user->description = $request->input('description');
 
         $user->produit = $request->input('produit');
         $user->price_min = $request->input('price_min');
@@ -438,31 +450,83 @@ class AnnonceController extends Controller
     }
     public function storeBoite(Request $request)
     {
-        $user = new Boite;
+        $user = new Boite();
 
         $user->name = $request->name;
 
         $user->type_bar = $request->type_bar;
 
         $user->type_music = $request->type_music;
-        $user->equipement_vie = $request->equipement_vie;
-        $user->service = $request->service;
-        $user->description = $request->description;
+        //$user->service = $request->service;
+                        //dd($user);
+        $user->description = $request->input('description');
 
         $user->capacite = $request->input('capacite');
         $user->price_min = $request->input('price_min');
 
-        //$user->image_name = $request->input('image_name');
-        
+      
+        //dd($user);
         $user->prixmax = $request->input('prixmax');
+        $user->save();
+                dd($user);
+
+        $services = $request->input('service');
+        //dd($services);
+        foreach($services as $service) 
+        {
+            //dd(intval($service));
+             Service::create([
+                'type_ref_id' => intval($service),
+                'boite_id' =>$user->id,
+            ]); 
+        }
+
+        
+        $equipement_vies = $request->equipement_vie;
+
+        foreach($equipement_vies as $equipement_vie) 
+        {
+            //dd(intval($service));
+             EquipementVie::create([
+                'type_ref_id' => intval($service),
+                'boite_id' =>$user->id,
+            ]); 
+        }
+        if($files = $request->file('image_p'))
+        {
+            //dd($files);
+
+            foreach ($files as $image)
+            {
+                $path = $user->capacite.'-image-'.time().rand(1,1000000).'.'.$image->extension();
+                $image->move(public_path('product_images'),$path);
+                Image::create([
+                            'product_id'=>$user->id,
+                            'image'=>$path
+                ]);
+               
+            }
+            
+          /*   foreach($files as $file)
+            {
+                $image_name = md5(rand(100000,1000000)).
+                $ext = strtolower($file->getClientOriginalExtension());
+                $image_full_name = $image_name.'.'.$ext;
+                $upload_path = 'public/storage/Image';
+                $image_url = $upload_path.$image_full_name;
+                $file->move($upload_path,$image_full_name);
+                $image[] = $image_url;
+            } */
+        }
+
         //dd($request);
-        $filename =time() . '.' . $request->file('image_p')->extension();
+      /*   $filename =time() . '.' . $request->file('image_p')->extension();
         //dd($filename);
-        $path = $request->file('image_p')->storeAs('LogoBar',$filename,'public');
+        $path = $request->file('image_p')->storeAs('LogoBoite',$filename,'public');
     
         $user->image_p = $path;
-        //dd($user);
-        $user->save();
+        //dd($user); */
+        
         //dd('salut');
 
         return redirect()->route('acces')->with('success','Boite de Nuit bien enrégistrer');
