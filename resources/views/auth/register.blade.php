@@ -189,8 +189,8 @@
 								<div class="form-group">
 									<select name="profil" class="form-control">
 										<option data-placeholder="Register as a" class="chosen-select">S'inscrire en tant que </option>
-										<option value="1">Professionnel</option>
-										<option value="2">Simple Utilisateur</option>
+										<option value="2">Professionnel</option>
+										<option value="3">Simple Utilisateur</option>
 									</select>
 								</div>
 								

@@ -1,6 +1,5 @@
 
 @extends('layout.app')
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" rel="stylesheet" />
 
 @section('section')
 
@@ -57,13 +56,11 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Type de Bar:</label>
                             <div class="col-md-4 col-sm-3">
-                             
-
                                 <select class="selectpicker form-control col-md-12 col-sm-3" id="type_bar" name="type_bar[]" multiple aria-label="Default select example" data-live-search="true">
                                     <optgroup label="Choisir Le type">
-                                       {{--  @foreach($comodites as $pa)
+                                    @foreach($comodites as $pa)
                                         <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                        @endforeach  --}}
+                                    @endforeach  
                                     </optgroup>
                                 </select>
                             </div>
@@ -72,11 +69,11 @@
                                 <label class="col-md-2 col-sm-2">Type de Musique:</label>
                                 <div class="col-md-4 col-sm-3">
                                     
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_music" name="type_music[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control height-70 col-md-12 col-sm-3" id="type_music" name="type_music[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le type">
-                                           {{--  @foreach($comodites as $pa)
+                                           @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                            @endforeach  --}}
+                                            @endforeach 
                                         </optgroup>
                                     </select>
                                     
@@ -91,11 +88,11 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Prix Min:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="price_min" placeholder="345678">        
+                                    <input type="number" class="form-control" id="price_min" name="price_min" placeholder="345678">        
                                 </div>
                                 <label class="col-md-2 col-sm-2">Prix Maximum :</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control height-70" name="prixmax" placeholder="10000000">
+                                    <input type="number" class="form-control height-70" id="prixmax" name="prixmax" placeholder="10000000">
                                 </div>
                             </div>
                             
@@ -108,9 +105,9 @@
                                         <div class="col-md-10 col-sm-9">
                                                 <select class="selectpicker form-control col-md-12 col-sm-3" id="equipement_vie" name="equipement_vie[]" multiple aria-label="Default select example" data-live-search="true">
                                                     <optgroup label="Choisir Le Service">
-                                                        @foreach($comodites as $pa)
+                                                        @foreach($equip_vie_noct as $pa)
                                                         <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                                    @endforeach 
+                                                        @endforeach 
                                                     </optgroup>
                                                 </select>
                                         </div>
@@ -124,7 +121,7 @@
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                        @endforeach 
+                                            @endforeach 
                                         </optgroup>
                                     </select>
                                 </div>
@@ -148,24 +145,12 @@
                                     </label>
                                 </div>
                                 
-                                   
-                                <label class="col-md-2 col-sm-2">Comodités:</label>
-
-                                <div class="col-md-4 col-sm-3">
-
-                                <select class="selectpicker col-md-12 col-sm-3" id="service" name="serice[]" multiple aria-label="Default select example" data-live-search="true">
-                                    <optgroup label="Choisir Le Service">
-                                        @foreach($comodites as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                        @endforeach 
-                                    </optgroup>
-                                </select>
-                            </div>
+                          
                             </div>    
                                                    
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn theme-btn">Enrégistrer</button>
+                                    <button type="submit" onclick="validate()" class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>
                             
@@ -196,6 +181,19 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
+
+<script>
+    function validate() {
+      var prixMin = document.getElementById("price_min").value;
+      var prixMax = document.getElementById("prixmax").value;
+      if (prixMin >= prixMax) {
+        alert("Le prix min doit être inférieur au prix max");
+      }
+    }
+</script>
+
+
+
 <script type="text/javascript">
     console.log("azyui");
     $('#country_id').on('change',function ( ) {

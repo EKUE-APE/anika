@@ -4,12 +4,12 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Comptes</h4>
+            <h4>Suppression</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="index.html">Dashboard</a></li>
-                <li class="active">Comptes</li>
+                <li><a href="">Entreprise</a></li>
+                <li class="active">Recherche Entreprises</li>
             </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -22,8 +22,8 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>{{ $userCount }} Comptes </h4>
-                      
+                        <h3>{{ $userCount }}</h3><h4> Entreprises </h4>
+                      <a href="{{ url('addentre') }}" class="btn theme-btn">Ajouter une entreprise</a>
                     </div>
                     
                     <div class="card-body">
@@ -32,35 +32,35 @@
                                 <thead>
                                     <tr>
                                         <th>Noms</th>						
-                                        <th>Email</th>
-                                        <th>Numéro</th>
-                                        <th>Entreprise</th>
+                                        <th>N° Whatsapp</th>
+                                        <th>Site web</th>
+                                        <th>Créateur</th>
                                         
-                                        <th>Profil</th>
-                                        <th>Date de Création</th>
-                                        <th>Dernière connexion</th>
+                                        <th>Annonce Rattachées</th>
+                                        <th>Date de Suppression</th>
+                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($users as $user )
+                                    @foreach ($deletedData as $item)
                                     <tr>
                                         <td>
-                                           <span class="custom-checkbox">
-                                            {{($user->name)}}
+                                           <span class="custom-checkbox text-center">
+                                            {{($item->name)}}
                                             </span>
                                         </td>
-                                        <td>{{($user->email)}}</td>                        
-                                        <td>{{($user->phone)}}</td>
-                                         <td>{{($user->compagnie)}}</td>    
-                                         <td>{{($user->nom)}}</td>                                      
-                                        <td>{{($user->created_at)}}</td>                      
-                                        <td>{{($user->last_login)}}</td> 
+                                        <td>{{($item->phoneWhat)}}</td>                        
+                                        <td>{{($item->siteweb)}}</td>
+                                         <td>{{($item->nom)}}</td>    
+                                         <td>{{($item->name)}}</td>                                      
+                                        <td>{{($item->deleted_at)}}</td>                      
+                                        
                                         <td>
-                                            <a href="updatecompt/{{$user->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
+                                            <a href="updatecompt/{{$item->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="deletecompt/{{$user->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
+                                                <a href="AlldeleteEntreprise/{{$item->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>

@@ -7,7 +7,7 @@
             </li>
             
             <li>
-                <a href="messages.html"><i class="fa fa-envelope-open" aria-hidden="true"></i>Messages</a>
+                <a href="{{ url('ShowDelete') }}"><i class="fa fa-envelope-open" aria-hidden="true"></i>Corbeille</a>
             </li>
             
             <li>
@@ -19,12 +19,7 @@
                     <li>
                         <a href="{{ route('acces') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter une Annonce</a>
                     </li>
-                    <li>
-                        <a href=""><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un dessert</a>
-                    </li>
-                   <li>
-                        <a href=""><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter une entrée</a>
-                    </li>
+                 
                 </ul>
             </li>
             
@@ -71,7 +66,16 @@
             </li>
          
             <li>
-                <a href="advertising.html"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Restauration</a>
+                <a href="javascript:void(0)"><i class="fa fa-cog" aria-hidden="true"></i>Entreprise <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="{{ url('addentre') }}"><i class="fa fa-user-circle-o" aria-hidden="true"></i>Ajouter une entreprise</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('allEntreprise') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Recherche</a>
+                    </li>
+                  
+                </ul>
             </li>
             
             <li>

@@ -75,7 +75,7 @@
                             </div>
                             
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Contact Email:</label>
+                                <label class="col-md-2 col-sm-3">Site web:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <input type="text" class="form-control" name="contactEmail" placeholder="support@listinghub.com">
                                 </div>
@@ -122,13 +122,13 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Comodité:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="valeurajout">
-                                        <optgroup label="Choisir La commodité">
-                                            @foreach($refs as $pay)
-                                                <option value="{{$pay->id}}">{{$pay->valeurajout}}</option>
-                                            @endforeach
-                                        </optgroup>
-                                    </select>
+                                        <select class="selectpicker form-control col-md-12 col-sm-3" id="valeurajout" name="valeurajout[]" multiple aria-label="Default select example" data-live-search="true">
+                                            <optgroup label="Choisir Les equipements">
+                                                @foreach($refs as $pa)
+                                                <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                                @endforeach 
+                                            </optgroup>
+                                        </select>     
                                 </div>
                             </div>
                             

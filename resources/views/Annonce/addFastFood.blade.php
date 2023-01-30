@@ -53,13 +53,13 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Produits Fast Food:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="type_produit_fast" name="type_produit_fast">
-                                    <optgroup label="Choisir LE TYPE">
-                                       {{--  @foreach($pays as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->name}}</option>
-                                        @endforeach --}}
-                                    </optgroup>
-                                </select>
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_produit_fast" name="type_produit_fast[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <optgroup label="Choisir Le Service">
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
+                                        </optgroup>
+                                    </select>
                             </div>
                         </div>
                            
@@ -78,9 +78,11 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Equipement Fast Food:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" id="type_equipement" name="type_equipement">
-                                        <optgroup label="Choisir La cuisine">
-                                            
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_equipement" name="type_equipement[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <optgroup label="Choisir Le Service">
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
                                         </optgroup>
                                     </select>
                                 </div>
@@ -92,13 +94,14 @@
                                 </div>
                                 <label class="col-md-2 col-sm-2">Ingredients:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="form-control" id="ingredient" name="ingredient">
+                                   
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="ingredient" name="ingredient[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
-                                            {{-- @foreach($pays as $pa)
-                                                <option value="{{$pa->id}}">{{$pa->name}}</option>
-                                            @endforeach --}}
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
                                         </optgroup>
-                                    </select>                                
+                                    </select>                         
                                 </div>
                             </div>
                             
@@ -106,22 +109,25 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Accompagnement:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="form-control" id="accompagnement" name="accompagnement">
+                                    
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="accompagnement" name="accompagnement[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
-                                            {{-- @foreach($pays as $pa)
-                                                <option value="{{$pa->id}}">{{$pa->name}}</option>
-                                            @endforeach --}}
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
                                         </optgroup>
-                                    </select>                            
+                                    </select>                           
                                 </div>
 
                                 <label class="col-md-2 col-sm-2">Comodités:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="form-control" id="service" name="service">
+                                  
+                                       
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
-                                            {{-- @foreach($pays as $pa)
-                                                <option value="{{$pa->id}}">{{$pa->name}}</option>
-                                            @endforeach --}}
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
                                         </optgroup>
                                     </select>
                                 </div>
@@ -141,20 +147,14 @@
                                 <div class="col-md-4 col-sm-3">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_p" />
+                                        <input type="file" name="image_p[]" />
                                     </label>
                                 </div>
-                                <label class="col-md-2 col-sm-2">Galerie d'Image :</label>
-                                <div class="col-md-4 col-sm-3">
-                                    <label class="btn-bs-file btn">
-                                        Choisir
-                                        <input type="file" name="image_s" />
-                                    </label>
-                                </div>
+                            
                             </div>                            
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn theme-btn">Enrégistrer</button>
+                                    <button type="submit" onclick="validate()" class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>
                             

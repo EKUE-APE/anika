@@ -19,6 +19,8 @@
 		
 		<!-- BOOTSTRAP STYLES-->
 		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/css/bootstrap-select.min.css" rel="stylesheet" />
+
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.min.css" integrity="sha512-NvuRGlPf6cHpxQqBGnPe7fPoACpyrjhlSNeXVUY7BZAj1nNhuNpRBq3osC4yr2vswUEuHq2HtCsY2vfLNCndYA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/11.7.1/sweetalert2.css" integrity="sha512-JzSVRb7c802/njMbV97pjo1wuJAE/6v9CvthGTDxiaZij/TFpPQmQPTcdXyUVucsvLtJBT6YwRb5LhVxX3pQHQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -104,7 +106,20 @@
 		<script src="https://cdn.datatables.net/plug-ins/1.13.1/i18n/fr-FR.json" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		<script type="text/javascript" src="{{ asset ('assetss/plugins/jquery-match-height/jquery.matchHeight-min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset ('assetss/plugins/jquery-1.12.3.min.js') }}"></script>
+		
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.14.0-beta2/js/bootstrap-select.min.js"></script>
 
+		<script>
+			function validate() {
+			  var prixMin = document.getElementById("price_min").value;
+			  var prixMax = document.getElementById("prixmax").value;
+			  if (prixMin >= prixMax) {
+				alert("Le prix min doit être inférieur au prix max");
+			  }
+			}
+		</script>
 		@yield('js')
 		
 

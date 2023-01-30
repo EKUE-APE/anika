@@ -1,16 +1,41 @@
 
 @extends('layout.app')
+<style>
+    #previewContainer {
+        width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+    float: left;
+    margin-right: 100px;
+    }
+    #previewContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #removeImageButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+  }
+  </style>
 @section('section')
 
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Patisserie</h4>
+            <h4>Auberge</h4>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="index.html">Tableau de Bord</a></li>
-                <li class="active">Patisserie</li>
+                <li><a href="index.html">Gestion Annonces</a></li>
+                <li class="active">Auberge</li>
             </ol>
         </div>
         <!-- /.col-lg-12 -->
@@ -23,7 +48,7 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>Crée sa Patisserie</h4>
+                        <h4>Crée son Auberge</h4>
                     </div>
                     
                     <div class="card-body">
@@ -37,7 +62,7 @@
                         </div>
 
                         @endif
-                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storePatisserie') }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeAuberge') }}">
                         @csrf
 
                         <div class="form-group">
@@ -51,18 +76,27 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            <label class="col-md-2 col-sm-2">Produits patissières:</label>
+                            <label class="col-md-2 col-sm-2">Type d'herbergement:</label>
                             <div class="col-md-4 col-sm-3">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="produit_patisserie" name="produit_patisserie[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_heberg" name="type_heberg[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Les equipements">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
                                             @endforeach 
                                         </optgroup>
-                                    </select>
+                                    </select> 
                             </div>
                         </div>
-                           
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2">Nombre de Chambre:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" placeholder="5" name="nbreChambre">
+                                </div>
+                                <label class="col-md-2 col-sm-2">Superficie:</label>
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="number" class="form-control" name="superficie" placeholder="03294828">
+                                </div>
+                            </div>
                             
                             
                             <div class="form-group">
@@ -75,49 +109,16 @@
                                     <input type="number" class="form-control" name="prixmax" placeholder="10000000">
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 col-sm-3">Equipement Patisserie:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="equipement_patisserie" name="equipement_patisserie[]" multiple aria-label="Default select example" data-live-search="true">
-                                        <optgroup label="Choisir Les equipements">
-                                            @foreach($comodites as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                            @endforeach 
-                                        </optgroup>
-                                    </select>
-                                </div>
-                            </div>
-                             <div class="form-group">
-                                <label class="col-md-2 col-sm-2">Nom du Produit:</label>
-                                <div class="col-md-4 col-sm-3">
-                                    <input type="TEXT" class="form-control" placeholder="5" name="produit">
-                                </div>
-                                <label class="col-md-2 col-sm-2">Ingredients:</label>
-                                <div class="col-md-4 col-sm-3">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="ingredient" name="ingredient[]" multiple aria-label="Default select example" data-live-search="true">
-                                        <optgroup label="Choisir Les ingredients">
-                                            @foreach($comodites as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                            @endforeach 
-                                        </optgroup>
-                                    </select>                                
-                                </div>
-                            </div>
+                            
                             
                             
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-2">Accompagnement:</label>
+                                <label class="col-md-2 col-sm-2">Nombre de Personnes:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="accompagnement" name="accompagnement[]" multiple aria-label="Default select example" data-live-search="true">
-                                        <optgroup label="Choisir Les equipements">
-                                            @foreach($comodites as $pa)
-                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
-                                            @endforeach 
-                                        </optgroup>
-                                    </select>                          
+                                    <input type="number" class="form-control" name="nbrePersonne" placeholder="8">
                                 </div>
 
-                                <label class="col-md-2 col-sm-2">Comodités:</label>
+                                <label class="col-md-2 col-sm-2">Services:</label>
                                 <div class="col-md-4 col-sm-3">
                                     <select class="selectpicker form-control col-md-12 col-sm-3" id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Les equipements">
@@ -125,33 +126,66 @@
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
                                             @endforeach 
                                         </optgroup>
-                                    </select>
+                                    </select> 
                                 </div>
                             </div>
                             
-                                                   
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2">Nombre de Salle de Bain:</label>
+                                <div class="col-md-10 col-sm-9">
+                                    <input type="text" class="form-control" name="nbreSalleBain" placeholder="2">
+                                </div>
+                            </div> 
+                            
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Description:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <textarea class="form-control textarea height-100" name="description" placeholder="Description"></textarea>
                                 </div>
                             </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-2">Equipement salle de bain:</label>
+                                <div class="col-md-10 col-sm-9">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="equipement_salle_bain" name="equipement_salle_bain[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <optgroup label="Choisir Les equipements">
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
+                                        </optgroup>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 col-sm-3">Equipement Cuisine:</label>
+                                <div class="col-md-10 col-sm-9">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="equipement_cuisine" name="equipement_cuisine[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <optgroup label="Choisir Les equipements">
+                                            @foreach($comodites as $pa)
+                                            <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
+                                            @endforeach 
+                                        </optgroup>
+                                    </select> 
+                                </div>
+                            </div>
+                                       
+                            
+                              <div id="previewContainerContainer"></div>
                           
+                                     
                          
                             <div class="form-group">
+
                                 <label class="col-md-2 col-sm-2">Galerie d'Image :</label>
                                 <div class="col-md-4 col-sm-3">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_p[]" multiple />
+                                        <input type="file" name="image_p[]" id="fileInput" multiple />
                                     </label>
                                 </div>
-                                
-                          
-                            </div>                            
+                            </div>                          
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-center">
-                                    <button type="submit" onclick="validate()" class="btn theme-btn">Enrégistrer</button>
+                                    <button type="submit" onclick="validate()"class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>
                             
@@ -176,6 +210,48 @@
     
 </script>
 @endif
+
+<script>
+    console.log('viens');
+    document.querySelector('#fileInput').addEventListener('change', function(e) {
+      const files = e.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.width = 200;
+            const previewContainer = document.createElement('div');
+            previewContainer.id = 'previewContainer';
+            const removeImageButton = document.createElement('div');
+            removeImageButton.id = 'removeImageButton';
+            removeImageButton.innerText = 'Remove';
+            removeImageButton.addEventListener('click', function() {
+              previewContainer.remove();
+            });
+            previewContainer.appendChild(removeImageButton);
+            previewContainer.appendChild(img);
+            document.querySelector('#previewContainerContainer').appendChild(previewContainer);
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+  </script>
+  
+  
+  
+  
+{{-- <script>
+console.log('aseryt');
+    var loadFile = function(event) {
+        console.log('asert');
+        var output = document.getElementById('output');
+        output.scr = URL.createObjectURL(event.target.files[0]);
+    };
+</script> --}}
 <script type="text/javascript">
     console.log("azyui");
     $('#country_id').on('change',function ( ) {

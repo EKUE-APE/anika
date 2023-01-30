@@ -22,7 +22,7 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>{{ $userCount }} Comptes </h4>
+                        <h4>Comptes </h4>
                       
                     </div>
                     
@@ -31,14 +31,13 @@
                             <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Noms</th>						
-                                        <th>Email</th>
-                                        <th>Numéro</th>
+                                        <th>Type d'Annonce</th>						
+                                        <th>Categorie d'Annonce</th>
                                         <th>Entreprise</th>
+                                        <th>Date de creation</th>
                                         
-                                        <th>Profil</th>
-                                        <th>Date de Création</th>
-                                        <th>Dernière connexion</th>
+                                        <th>Créateur</th>
+                                        
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -53,10 +52,9 @@
                                         </td>
                                         <td>{{($user->email)}}</td>                        
                                         <td>{{($user->phone)}}</td>
-                                         <td>{{($user->compagnie)}}</td>    
                                          <td>{{($user->nom)}}</td>                                      
                                         <td>{{($user->created_at)}}</td>                      
-                                        <td>{{($user->last_login)}}</td> 
+                                        
                                         <td>
                                             <a href="updatecompt/{{$user->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
                                                 <i class="fa fa-pencil"></i></a>
@@ -104,12 +102,6 @@ $('#example').DataTable();
     $(document).ready(function(){
         $('#example').DataTable({
             "order": [[ 0, "desc" ]],
-            columnDefs: [{
-            targets: 0,
-            render: function(data, type, row, meta) {
-                return '<input type="checkbox">';
-            }
-        }],
             "pageLength":50,
             "oLanguage": {
                 

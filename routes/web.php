@@ -77,7 +77,12 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+Route::middleware(['auth'])->group(function () {
+    
+Route::get('/allEntreprise', [App\Http\Controllers\AnnonceController::class, 'allEntreprise'])->name('allEntreprise');
+
 Route::get('/acces', [App\Http\Controllers\AnnonceController::class, 'acces'])->name('acces');
+Route::get('/allAnnonce', [App\Http\Controllers\AnnonceController::class, 'allAnnonce'])->name('allAnnonce');
 
 Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHotel'])->name('addHotel');
 Route::post('/storeHotel', [App\Http\Controllers\AnnonceController::class, 'storeHotel'])->name('storeHotel');
@@ -109,3 +114,9 @@ Route::get('/addBoite', [App\Http\Controllers\AnnonceController::class, 'addBoit
 
 Route::post('/storeBoite', [App\Http\Controllers\AnnonceController::class, 'storeBoite'])->name('storeBoite');
 
+ 
+Route::get('/AlldeleteEntreprise-{id}', 'App\Http\Controllers\DeleteController@AlldeleteEntreprise')->name('AlldeleteEntreprise');
+
+Route::get('/ShowDelete', 'App\Http\Controllers\DeleteController@deleteEntreprise')->name('ShowDelete');
+
+});

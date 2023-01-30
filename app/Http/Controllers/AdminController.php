@@ -9,6 +9,7 @@ use App\Models\Country;
 use App\Models\City;
 use App\Models\Quartier;
 use App\Models\Company;
+use App\Models\Service;
 
 use Faker\Provider\Image;
 
@@ -51,10 +52,9 @@ class AdminController extends Controller
         $user->description = $request->input('description');
         $user->user_id =Auth::user()->id;
 
-        $user->valeurajout = $request->valeurajout;
         $user->nomq = $request->nomq;
         $user->city_id = $request->city_id;
-        $user->contactEmail = $request->input('contactEmail');
+        $user->siteweb = $request->input('contactEmail');
         $user->instagram = $request->input('instagram');
         $user->phoneWhat = $request->input('phoneWhat');
         $user->phone = $request->input('phone');
@@ -72,6 +72,16 @@ class AdminController extends Controller
         //dd($user);
         $user->save();
         //dd('salut');
+        $valeurajouts = $request->input('valeurajout');
+        //dd($valeurajouts);
+        foreach($valeurajouts as $valeurajout) 
+        {
+            //dd(intval($valeurajout));
+             Service::create([
+                'type_ref_id' => intval($valeurajout),
+                'boite_id' =>$user->id,
+            ]); 
+        }
 
         return redirect()->route('acces')->with('success','Entreprise bien enrégistrer');
     }
@@ -79,20 +89,28 @@ class AdminController extends Controller
 
     public function adduser()
     {
-        return view('admin.adduser');
+        return view('admin.test');
     }
 
     public function comptes()
     {
-        $users = DB::select('select * from users');
+        $users =DB::table('companies')
+            ->join('users', 'users.id', '=', 'companies.user_id')
+            ->join('roles','roles.id', '=', 'users.roles' )
+                ->select ('users.*',
+                    'companies.name as compagnie',
+                    'roles.nom as nom')
+                ->get();
+        //dd($users);
+        $userCount = $users->count();
 
-        return view('admin.liste',compact('users'));
+        return view('admin.liste',compact('users','userCount'));
     }
 
     public function allcomptes()
     {
-        $users = DB::select('select * from users');
-
+        $users = DB::select('select *,roles.nom as nom,compagnies.name as compagnie from users join compagnies on user.id = compagnies.user_id join roles on user.roles = roles.id');
+dd($users);
         return view('admin.alluser',compact('users'));
     }
 
@@ -181,8 +199,13 @@ class AdminController extends Controller
     
     public function addRestaurant()
 
-    {
-        return view('admin.addRestaurant');
+    {  $entreprises = DB::table('companies')
+        ->where('user_id','=',Auth::user()->id)
+        ->get();
+        $comodites = DB::table('value_references')
+        ->where('idname','=',8)
+        ->get();
+        return view('admin.addplat',compact('entreprises','comodites'));
     }
 
     public function addentree()
@@ -233,53 +256,35 @@ class AdminController extends Controller
     {
         //die($reference);
         $reference = new ValueReference();
-        $reference->note = $request->input('note');
         $reference->idname = $request->name;
         $reference->valeurajout = $request->input('valeur');
+        /*$reference->valeurA = $request->input('valeurA'); 
+        $reference->valeurB = $request->input('valeurB');
+        $reference->valeurC = $request->input('valeurC');
+        $reference->valeurD = $request->input('valeurD'); */
         $reference->idtype =$request->typereference;
+        $reference->user_id =Auth::user()->id;
         
         $reference->save();
         return redirect()->route('addReference')->with('succes','Référence BIEN SUPPRIMER');
     }
     public function allReference()
     {
-        $produits=DB::table('value_references')
-        ->join('manerefs', 'manerefs.id', '=', 'value_references.idname')
+        $produits=DB::table('type')
+        ->join('manerefs', 'type.id', '=', 'manerefs.idtype')
+        ->join('value_references', 'manerefs.id', '=', 'value_references.idname')
+        ->join('users','value_references.user_id','=','users.id')
 
-            ->where ('value_references.idtype', '=', 1)
             ->select ('value_references.*',
                 'value_references.id as id',
-                'manerefs.nameref')
+                'type.name as type',
+                    'users.name as createur',
+                'manerefs.nameref as nom')
             ->get();
+            $userCount = $produits->count();
+
            
-
-        $herbergements=DB::table('value_references')
-        ->join('manerefs', 'manerefs.id', '=', 'value_references.idname')
-
-            ->where ('value_references.idtype', '=', 2)
-            ->select ('value_references.*',
-                'value_references.id as id',
-                'manerefs.nameref')
-            ->get();
-            //dd($herbergements);
-        $restaurations=DB::table('value_references')
-        ->join('manerefs', 'manerefs.id', '=', 'value_references.idname')
-
-            ->where ('value_references.idtype', '=', 3)
-            ->select ('value_references.*',
-                'value_references.id as id',
-                'manerefs.nameref')
-            ->get();
-
-        $entreprises=DB::table('value_references')
-        ->join('manerefs', 'manerefs.id', '=', 'value_references.idname')
-
-            ->where ('value_references.idtype', '=', 4)
-            ->select ('value_references.*',
-                'value_references.id as id',
-                'manerefs.nameref')
-            ->get();
-        return view('admin.allreference',compact('produits','herbergements','restaurations','entreprises'));
+        return view('admin.alluser',compact('produits','userCount'));
     }
 
 
