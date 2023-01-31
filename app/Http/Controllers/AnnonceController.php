@@ -49,6 +49,10 @@ use Nette\Utils\Random;
 class AnnonceController extends Controller
 {
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function acces()
     {
        

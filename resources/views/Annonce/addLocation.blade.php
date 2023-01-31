@@ -1,5 +1,30 @@
 
 @extends('layout.app')
+<style>
+    #previewContainer {
+        width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    overflow: hidden;
+    float: left;
+    margin-right: 100px;
+    }
+    #previewContainer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #removeImageButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+  }
+</style>
 @section('section')
 
 <div id="page-wrapper" >
@@ -193,10 +218,12 @@
                                 <div class="col-md-4 col-sm-3">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_p[]" multiple />
+                                        <input type="file" name="image_p[]" id="fileInput" multiple />
                                     </label>
                                 </div>
-                            </div>                           
+                            </div>     
+                                                          <div id="previewContainerContainer"></div>
+                      
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-center">
                                     <button type="submit" class="btn theme-btn">Enrégistrer</button>
@@ -224,6 +251,36 @@
     
 </script>
 @endif
+
+<script>
+    console.log('viens');
+    document.querySelector('#fileInput').addEventListener('change', function(e) {
+      const files = e.target.files;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.width = 200;
+            const previewContainer = document.createElement('div');
+            previewContainer.id = 'previewContainer';
+            const removeImageButton = document.createElement('div');
+            removeImageButton.id = 'removeImageButton';
+            removeImageButton.innerText = 'Remove';
+            removeImageButton.addEventListener('click', function() {
+              previewContainer.remove();
+            });
+            previewContainer.appendChild(removeImageButton);
+            previewContainer.appendChild(img);
+            document.querySelector('#previewContainerContainer').appendChild(previewContainer);
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+</script>
 <script type="text/javascript">
     console.log("azyui");
     $('#country_id').on('change',function ( ) {

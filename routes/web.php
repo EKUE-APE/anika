@@ -19,7 +19,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 }); */
 
 Route::get('/', function () {
-    return view('home');
+    return view('affichage');
 });
 Route::get('/vitrine', 'App\Http\Controllers\AdminController@vitrine')->name('vitrine');
 Route::get('/addentre', 'App\Http\Controllers\AdminController@addentre')->name('addentre');
