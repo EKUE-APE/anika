@@ -58,10 +58,11 @@
                                         <td>{{($item->deleted_at)}}</td>                      
                                         
                                         <td>
-                                            <a href="updatecompt/{{$item->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
+                                            <a href="" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="AlldeleteEntreprise/{{$item->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
-                                                <i class="fa fa-trash"></i></a>
+                                                <a href="" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

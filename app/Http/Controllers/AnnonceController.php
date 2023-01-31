@@ -64,7 +64,7 @@ class AnnonceController extends Controller
             ->get();
             $userCount = $entreprises->count();
 
-        return view('admin.allEntreprise',compact('entreprises','userCount'));
+        return view('admin.allEntrepris',compact('entreprises','userCount'));
     }
     public function addHotel()
     {

@@ -23,7 +23,8 @@
                 
                     <div class="card-header">
                         <h4>{{ $userCount }} Comptes </h4>
-                      
+                        <a href="{{ route('export') }}" class="btn btn-success">Exporter</a>
+
                     </div>
                     
                     <div class="card-body">

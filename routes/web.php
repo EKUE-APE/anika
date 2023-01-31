@@ -115,8 +115,9 @@ Route::get('/addBoite', [App\Http\Controllers\AnnonceController::class, 'addBoit
 Route::post('/storeBoite', [App\Http\Controllers\AnnonceController::class, 'storeBoite'])->name('storeBoite');
 
  
-Route::get('/AlldeleteEntreprise-{id}', 'App\Http\Controllers\DeleteController@AlldeleteEntreprise')->name('AlldeleteEntreprise');
+Route::get('/AlldeleteEntrepris-{id}', 'App\Http\Controllers\DeleteController@AlldeleteEntreprise')->name('AlldeleteEntreprise');
 
 Route::get('/ShowDelete', 'App\Http\Controllers\DeleteController@deleteEntreprise')->name('ShowDelete');
+Route::get('/export', 'App\Http\Controllers\DeleteController@export')->name('export');
 
 });
