@@ -4,13 +4,13 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Suppression</h4>
+               <ol class="breadcrumb">
+                <li>entre</li>
+                <li class="active">suppression Entreprises</li>
+            </ol>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li><a href="">Entreprise</a></li>
-                <li class="active">Recherche Entreprises</li>
-            </ol>
+        
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -23,7 +23,6 @@
                 
                     <div class="card-header">
                         <h3>{{ $userCount }}</h3><h4> Entreprises </h4>
-                      <a href="{{ url('addentre') }}" class="btn theme-btn">Ajouter une entreprise</a>
                     </div>
                     
                     <div class="card-body">
@@ -31,7 +30,8 @@
                             <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Noms</th>						
+                                        <th></th>
+                                        <th>Noms</th>
                                         <th>N° Whatsapp</th>
                                         <th>Site web</th>
                                         <th>Créateur</th>
@@ -39,7 +39,6 @@
                                         <th>Annonce Rattachées</th>
                                         <th>Date de Suppression</th>
                                         
-                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 
@@ -48,22 +47,16 @@
                                     <tr>
                                         <td>
                                            <span class="custom-checkbox text-center">
-                                            {{($item->name)}}
-                                            </span>
-                                        </td>
+                                            
+                                            </span></td>
+                                        <td>{{($item->name)}}</td>
                                         <td>{{($item->phoneWhat)}}</td>                        
                                         <td>{{($item->siteweb)}}</td>
                                          <td>{{($item->nom)}}</td>    
                                          <td>{{($item->name)}}</td>                                      
                                         <td>{{($item->deleted_at)}}</td>                      
                                         
-                                        <td>
-                                            <a href="" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
-                                                <i class="fa fa-pencil"></i></a>
-                                                <a href="" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
-                                                <i class="fa fa-trash"></i>
-                                            </a>
-                                        </td>
+                                     
                                     </tr>
                                     @endforeach
                                    

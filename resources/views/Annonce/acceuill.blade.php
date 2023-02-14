@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-xs-8 no-pad">
                                 <div class="widget-detail">
-                                    <h3><a class="link" href="{{ url('addHotel') }}">Hotel</a></h3>
+                                    <h3><a class="link" href="{{ url('addHotel') }}">Hôtel</a></h3>
                                     <span></span>
                                 </div>
                             </div>

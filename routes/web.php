@@ -14,16 +14,22 @@ use RealRashid\SweetAlert\Facades\Alert;
 |
 */
 
-/* Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
-}); */
-
+}); 
+/*Route::get('/', 'AdminController@index');
+ 
 Route::get('/', function () {
     return view('affichage');
-});
+});*/
 Route::get('/vitrine', 'App\Http\Controllers\AdminController@vitrine')->name('vitrine');
+
+Auth::routes();
+Route::middleware(['auth'])->group(function () {
 Route::get('/addentre', 'App\Http\Controllers\AdminController@addentre')->name('addentre');
 Route::post('/storeEntreprise', 'App\Http\Controllers\AdminController@storeEntreprise')->name('storeEntreprise');
+Route::get('/updateEntreprise/{id}', 'App\Http\Controllers\AdminController@updateEntreprise')->name('updateEntreprise');
+Route::post('/editEntreprise/{id}', 'App\Http\Controllers\AdminController@editEntreprise')->name('editEntreprise');
 
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
 
@@ -50,8 +56,10 @@ Route::get('/recupereraddEntre-{id}', 'App\Http\Controllers\AdminController@advi
 Route::post('/storeReference', 'App\Http\Controllers\AdminController@storeReference')->name('storeReference');
 Route::get('/allReference', 'App\Http\Controllers\AdminController@allReference')->name('allReference');
 
-Route::get('/deleterefer-{id}', 'App\Http\Controllers\AdminController@deleterefer')->name('deleterefer');
-Route::get('/updaterefer-{id}', 'App\Http\Controllers\AdminController@updaterefer')->name('updaterefer');
+Route::get('/deleterefer/{id}', 'App\Http\Controllers\AdminController@deleterefer')->name('deleterefer');
+Route::get('/updaterefer/{id}', 'App\Http\Controllers\AdminController@updaterefer')->name('updaterefer');
+
+Route::post('/editrefer/{id}', 'App\Http\Controllers\AdminController@editrefer')->name('editrefer');
 
 Route::post('/storeName', 'App\Http\Controllers\AdminController@storeName')->name('storeName');
 
@@ -68,16 +76,25 @@ Route::get('/addVille', 'App\Http\Controllers\AdminController@addVille')->name('
 Route::post('/storeVille', 'App\Http\Controllers\AdminController@storeVille')->name('storeVille');
 
 Route::get('/addQuartier', 'App\Http\Controllers\AdminController@addQuartier')->name('addQuartier');
+Route::get('/updatelocalis/{id}', 'App\Http\Controllers\AdminController@updateQ')->name('updatelocalis');
+Route::get('/updatelocalis/{id}', 'App\Http\Controllers\AdminController@updateQ')->name('updatelocalis');
+
+Route::post('/editLocalisa/{id}', 'App\Http\Controllers\AdminController@editLocalisa')->name('editLocalisa');
+
+
+
+
 Route::get('/recupererville-{id}', 'App\Http\Controllers\AdminController@ville');
 
 Route::post('/storeQuartier', 'App\Http\Controllers\AdminController@storeQuartier')->name('storeQuartier');
+Route::get('/allLocalisation', 'App\Http\Controllers\AdminController@allLocalisation')->name('allLocalisation');
+Route::get('/deleteLocalisation/{id}', 'App\Http\Controllers\DeleteController@deleteLocalisation')->name('deleteLocalisation');
 
-Auth::routes();
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::middleware(['auth'])->group(function () {
     
 Route::get('/allEntreprise', [App\Http\Controllers\AnnonceController::class, 'allEntreprise'])->name('allEntreprise');
 
@@ -115,9 +132,17 @@ Route::get('/addBoite', [App\Http\Controllers\AnnonceController::class, 'addBoit
 Route::post('/storeBoite', [App\Http\Controllers\AnnonceController::class, 'storeBoite'])->name('storeBoite');
 
  
-Route::get('/AlldeleteEntrepris-{id}', 'App\Http\Controllers\DeleteController@AlldeleteEntreprise')->name('AlldeleteEntreprise');
+ 
+ 
+Route::get('/AlldeleteEntrepris/{id}', 'App\Http\Controllers\DeleteController@deleteEntreprise')->name('AlldeleteEntrepris');
 
-Route::get('/ShowDelete', 'App\Http\Controllers\DeleteController@deleteEntreprise')->name('ShowDelete');
+Route::get('/ShowDelete', 'App\Http\Controllers\DeleteController@AlldeleteEntreprise')->name('ShowDelete');
+//Route::get('/ShowDelete', 'App\Http\Controllers\DeleteController@deleteEntreprise')->name('ShowDelete');
+
+
 Route::get('/export', 'App\Http\Controllers\DeleteController@export')->name('export');
+
+
+Route::post('/storeExpiration', [App\Http\Controllers\AnnonceController::class, 'storeExpiration'])->name('storeExpiration');
 
 });

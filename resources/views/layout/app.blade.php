@@ -53,6 +53,51 @@
 
 		<style>
 			#map { height: 160px; }
+			footer {
+				position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    line-height: 50px;                   }
+                .card-body {
+                             background-color: #e0e0e0;
+                            }
+                            input::-webkit-input-placeholder {
+                          font-style: italic;
+                        }
+                        
+                        input::-moz-placeholder {
+                          font-style: italic;
+                        }
+
+                        input:-ms-input-placeholder {
+                          font-style: italic;
+                        }
+                        
+                        input::-ms-input-placeholder {
+                          font-style: italic;
+                        }
+                        input::-webkit-input-placeholder {
+                          color: #C0C0C0;
+                        }
+                        
+                        input::-moz-placeholder {
+                          color: #C0C0C0;
+                        }
+                        
+                        input:-ms-input-placeholder {
+                          color: #C0C0C0;
+                        }
+                        
+                        input::-ms-input-placeholder {
+                          color: #C0C0C0;
+                        }
+
+
 		</style>
 		
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
@@ -72,8 +117,7 @@
 				<div class="pull-right hidden-xs">
 				  <b>Version</b> 1.1
 				</div>
-				<strong>©Copyright 2018 <a href="index.html">Listing Hub</a>.</strong> All rights
-				reserved.
+				<strong>©Copyright 2023   <a href="index.html">Numrod</a>.</strong>Tous droits réservés.
 			</footer>
 		</div>
 		<!-- /. WRAPPER  -->
@@ -86,6 +130,17 @@
 		<!-- JQUERY SCRIPTS -->
 		<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 		<script src="{{ asset('assets/js/jquery-1.10.2.js') }}"></script>
+		      <script src="{{ asset('assets/js/mask-script.js') }}"></script>
+		        <!-- Ou bien le lien meme si tu es online -->
+       <script src="https://unpkg.com/imask"></script> 
+      <script>
+        var phoneMask = IMask(document.querySelector('input'), {
+        // var phoneMask = IMask(document.getElementById('mask'), {
+                mask: "(+000) 00 00 00 00"
+            });
+
+      </script>
+
 		<!-- BOOTSTRAP SCRIPTS -->
 		<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 		<!-- METISMENU SCRIPTS -->

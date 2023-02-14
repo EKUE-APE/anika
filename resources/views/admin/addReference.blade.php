@@ -5,13 +5,13 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Référence</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
+                       <ol class="breadcrumb">
                 <li><a href="index.html">Référence</a></li>
                 <li class="active">Ajouter une Référence</li>
             </ol>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -29,22 +29,24 @@
                     <div class="card-body">
                         @if (Session::has('message'))
 
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                            </button>
-                       {{ $message }}
-                        </div>
+                                    </button>
+                               {{ $message }}
+                                </div>
 
-                        @endif
+                                @endif
                         <form class="form-horizontal" method="POST" action="{{ route('storeReference') }}">
                             @csrf
                                                  
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Type de Référence:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="typereference" id="typereference">
-                                        <optgroup label="Choisir le type de la reference">
+                                <div class="col-md-4 col-sm-3">
+                                    <select class="form-control" required name="typereference" id="typereference">
+                                        <optgroup label="Choisir ">
+                                            <option selected value="">Choisir le type de la reference</option>
+
                                             <option value="1">Location de véhicule</option>
                                             <option value="2">Hébergement</option>
                                             <option value="3">Entreprise</option>
@@ -52,14 +54,12 @@
                                             <option value="5">Vie nocturne</option>
                                         </optgroup>
                                     </select>
-                                </div>
-                            </div>
-                          
-                            <div class="form-group">
+                                </div>  
                                 <label class="col-md-2 col-sm-3">Nom :</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="name" id="name">
+                                <div class="col-md-4 col-sm-3">
+                                    <select class="form-control" required name="name" id="name">
                                         <optgroup label="Choisir le nom de la reference">
+                                            <option selected value="">Choisir le nom de la reference</option>
 
                                         </optgroup>
                                         
@@ -67,20 +67,27 @@
                                     </select>
                                 </div>
                             </div>
+                          
+
 
                         
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Valeur Ajoutée:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control"  name="valeur" placeholder="reférence ............">
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="text" class="form-control" required name="valeur" placeholder="reférenc....">
                                 </div>
                             </div>
-                            <div class="form-group">
+                           
+                           
+                             {{--  <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Valeur Ajoutée:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <input type="text" class="form-control"  name="valeurA" placeholder="reférence ............">
                                 </div>
-                            </div> <div class="form-group">
+                            </div> 
+                            
+                            
+                            <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Valeur Ajoutée:</label>
                                 <div class="col-md-10 col-sm-9">
                                     <input type="text" class="form-control"  name="valeurB" placeholder="reférence ............">
@@ -95,11 +102,11 @@
                                 <div class="col-md-10 col-sm-9">
                                     <input type="text" class="form-control"  name="valeurD" placeholder="reférence ............">
                                 </div>
-                            </div>
+                            </div>--}}
                             
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn theme-btn">Créer</button>
+                                <div class="col-md-12 col-sm-12 text-right">
+                                    <button type="submit" class="btn theme-btn">Enregistrer</button>
                                 </div>
                             </div>
                             

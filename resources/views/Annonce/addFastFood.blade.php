@@ -8,6 +8,8 @@
     overflow: hidden;
     float: left;
     margin-right: 100px;
+    
+        margin-top: 50px;
     }
     #previewContainer img {
     width: 100%;
@@ -16,10 +18,9 @@
   }
   
   #removeImageButton {
-    position: absolute;
     top: 0;
     right: 0;
-    background-color: red;
+    background-color: blue;
     color: white;
     padding: 5px;
     cursor: pointer;
@@ -30,13 +31,13 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Fast Food</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li><a href="index.html">Tableau de Bord</a></li>
+           <ol class="breadcrumb">
+                <li><a href="">Gestion Annonces</a></li>
                 <li class="active">Fast Food</li>
             </ol>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -52,23 +53,23 @@
                     </div>
                     
                     <div class="card-body">
-                        @if (Session::has('message'))
+                         @if (Session::has('message'))
 
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;>
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                            </button>
-                       {{ $message }}
-                        </div>
+                                    </button>
+                               {{ $message }}
+                                </div>
 
-                        @endif
+                                @endif
                         <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeFastFood') }}">
                         @csrf
 
                         <div class="form-group">
                             <label class="col-md-2 col-sm-2">Entreprise:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="name" name="name">
+                                <select class="form-control" id="name" required name="name">
                                     <optgroup label="Choisir Le nom de l'entreprise">
                                         @foreach($entreprises as $companie)
                                             <option value="{{$companie->id}}">{{$companie->name}}</option>
@@ -78,7 +79,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Produits Fast Food:</label>
                             <div class="col-md-4 col-sm-3">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_produit_fast" name="type_produit_fast[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="type_produit_fast" name="type_produit_fast[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -103,7 +104,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Equipement Fast Food:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_equipement" name="type_equipement[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="type_equipement" name="type_equipement[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -120,7 +121,7 @@
                                 <label class="col-md-2 col-sm-2">Ingredients:</label>
                                 <div class="col-md-4 col-sm-3">
                                    
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="ingredient" name="ingredient[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="ingredient" name="ingredient[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -135,7 +136,7 @@
                                 <label class="col-md-2 col-sm-2">Accompagnement:</label>
                                 <div class="col-md-4 col-sm-3">
                                     
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="accompagnement" name="accompagnement[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="accompagnement" name="accompagnement[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -148,7 +149,7 @@
                                 <div class="col-md-4 col-sm-3">
                                   
                                        
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Le Service">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -172,15 +173,19 @@
                                 <div class="col-md-4 col-sm-3">
                                     <label class="btn-bs-file btn">
                                         Choisir
-                                        <input type="file" name="image_p[]" id="fileInput" />
+                                        <input type="file" name="image_p[]" required id="fileInput" multiple />
                                     </label>
                                 </div>
                             
                             </div>         
-                                                          <div id="previewContainerContainer"></div>
-                   
+                                            
+   <div class="form-group">
+  <div id="previewContainerContainer" class="card-body col-md-12 col-sm-12">
+                                
+                            </div>
+                            </div>                   
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 text-center">
+                                <div class="col-md-12 col-sm-12 text-right">
                                     <button type="submit" onclick="validate()" class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>

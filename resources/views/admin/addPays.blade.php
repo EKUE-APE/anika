@@ -1,17 +1,25 @@
 
 @extends('layout.app')
+<style>
+    .error {
+      color: red;
+      font-size: 14px;
+    }
+  </style>
+  <link rel="stylesheet" href="{{ asset('vendor/sweetalert2/sweetalert2.min.css') }}">
+  
 @section('section')
 
 <div id="page-wrapper" >
     <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Pays</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="index.html">Tableau de Bord</a></li>
+                <li><a href="index.html">Localisation</a></li>
                 <li class="active">Pays</li>
             </ol>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -27,30 +35,43 @@
                     </div>
                     
                     <div class="card-body">
-                        @if (Session::has('message'))
+                          @if (Session::has('message'))
 
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                            </button>
-                       {{ $message }}
-                        </div>
+                                    </button>
+                               {{ $message }}
+                                </div>
 
-                        @endif
+                                @endif
                         <form class="form-horizontal" method="POST" action="{{ route('storeCouuntry') }}">
                             @csrf
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Indicatif   :</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control"  name="country_code" placeholder="+228">
-                                </div>
-                            </div> 
-                            <div class="form-group">
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="text" class="form-control" required  name="country_code" placeholder="+228">
+                                </div>    
                                 <label class="col-md-2 col-sm-3">Nom du Pays:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control"  name="name" placeholder="Togo ............">
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="text" class="form-control" required id="field"  name="name" placeholder="Togo ............">
                                 </div>
-                            </div>
+                                @if ($errors->has('field'))
+                                <div class="error">{{ $errors->first('field') }}</div>
+                                @endif
+                                @if ($errors->has('field'))
+                                <script>
+                                  Swal.fire({
+                                    title: 'Erreur',
+                                    text: '{{ $errors->first('field') }}',
+                                    icon: 'error',
+                                  });
+                                </script>
+                              @endif
+                              
+
+                            </div> 
+
                             
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-center">
@@ -72,10 +93,20 @@
     console.log("salut");
 </script>
 @section('js')
+<script>
+    document.querySelector("form").addEventListener("submit", function(event) {
+      var field = document.querySelector("#field").value;
+      if (field) {
+        alert("Le champ est déjà rempli avec la valeur : " + field);
+        event.preventDefault();
+      }
+    });
+  </script>
+    <script src="{{ asset('vendor/sweetalert2/sweetalert2.min.js') }}"></script>
 
-    <script type="text/javascript">
-console.log("salut");
-$('#typereference').on('change',function ( ) {
+<script type="text/javascript">
+    console.log("salut");
+    $('#typereference').on('change',function ( ) {
     $.ajax({
         url: '/recuperernomRef-' + $('#typereference').val(),
         type: "get",

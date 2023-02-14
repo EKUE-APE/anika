@@ -26,6 +26,16 @@
                     </div>
                     
                     <div class="card-body">
+                            @if (Session::has('message'))
+
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+
+                                    </button>
+                               {{ $message }}
+                                </div>
+
+                                @endif
                         <form class="form-horizontal" method="POST" action="/update/{{$structure[0]->id}}">
                         @csrf
                             <div class="form-group">
@@ -64,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 text-center">
+                                <div class="col-md-12 col-sm-12 text-right">
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Modifier') }}
                                     </button>                              

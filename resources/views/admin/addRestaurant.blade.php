@@ -4,14 +4,14 @@
 
 <div id="page-wrapper" >
     <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Restaurant</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
             <ol class="breadcrumb">
                 <li><a href="index.html">Dashboard</a></li>
                 <li class="active">Restaurant</li>
             </ol>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+           
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -29,6 +29,16 @@
                  
                     
                     <div class="card-body">
+                            @if (Session::has('message'))
+
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+
+                                    </button>
+                               {{ $message }}
+                                </div>
+
+                                @endif
                         <form class="form-horizontal" enctype="multipart/form-data"  method="POST" action="{{ route('storeRestaurant') }}">
                             @csrf
                             <div class="form-group">

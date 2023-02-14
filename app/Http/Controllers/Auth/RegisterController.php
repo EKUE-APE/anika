@@ -78,4 +78,9 @@ class RegisterController extends Controller
 
         ]);
     }
+    public function authenticated(Request $request, $user)
+    {
+    $user->update(['last_login' => Carbon::now()->toDateTimeString()]);
+    //dd($user);
+    }
 }

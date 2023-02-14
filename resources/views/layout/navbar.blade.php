@@ -35,6 +35,9 @@
                    <li>
                         <a href="{{ url('addQuartier') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Ajouter un quartier</a>
                     </li>
+                      <li>
+                        <a href="{{ url('allLocalisation') }}"><i class="fa fa-circle-o-notch" aria-hidden="true"></i>Recherche</a>
+                    </li>
                 </ul>
             </li>
             

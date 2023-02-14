@@ -4,15 +4,13 @@
 
 <div id="page-wrapper" >
     <div class="row bg-title">
-        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Quartier</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-12">
             <ol class="breadcrumb">
-                <li><a href="index.html">Tableau de Bord</a></li>
+                <li><a href="">Localisation</a></li>
                 <li class="active">Quartier</li>
             </ol>
         </div>
+
         <!-- /.col-lg-12 -->
     </div>              
      <!-- /. ROW  -->
@@ -23,61 +21,59 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>Crée Un Quartier</h4>
+                        <h4>Créé Un Quartier</h4>
                     </div>
                     
                     <div class="card-body">
-                        @if (Session::has('message'))
+                      @if (Session::has('message'))
 
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                            </button>
-                       {{ $message }}
-                        </div>
+                                    </button>
+                               {{ $message }}
+                                </div>
 
-                        @endif
+                                @endif
                         <form class="form-horizontal" method="POST" action="{{ route('storeQuartier') }}">
                             @csrf
                             @csrf
                             <div class="form-group">
-                                <label class="col-md-2 col-sm-3">PPays:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="county_id" id="county_id">
-                                        <optgroup label="Choisir le pays">
-                                            @foreach($pays as $pay)
+                                <label class="col-md-2 col-sm-3">Pays:</label>
+                                <div class="col-md-4 col-sm-3">
+
+                                    
+                                     <select class="selectpicker form-control col-md-12 col-sm-3" required name="county_id" id="county_id"  aria-label="Default select example" data-live-search="true">
+                                       <option value="" selected >Choisir le pays</option>
+                                       <option selected value="">Choisir Le pays</option>
+
+                                             @foreach($pays as $pay)
                                                 <option value="{{$pay->id}}">{{$pay->name}}</option>
                                             @endforeach
-                                        </optgroup>
+                                       
                                     </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
+                                </div>     
                                 <label class="col-md-2 col-sm-3">Ville :</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <select class="form-control" name="city_id" id="city_id">
-                                        <optgroup label="Choisir le nom de la reference">
-
-                                        </optgroup>
-                                        
+                                <div class="col-md-4 col-sm-3">
+                                    <select class="form-control" required name="city_id" id="city_id">
+                                         <option selected value="">Choisir La Ville</option>
 
                                     </select>
+
                                 </div>
                             </div>
 
                             
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Nom du quartier:</label>
-                                <div class="col-md-10 col-sm-9">
-                                    <input type="text" class="form-control"  name="nomq" placeholder="Vakpo ............">
+                                <div class="col-md-4 col-sm-3">
+                                    <input type="text" class="form-control" required  name="nomq" placeholder="Vakpo ">
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 text-center">
-                                    <button type="submit" class="btn theme-btn">Créer</button>
+                                <div class="col-md-12 col-sm-12 text-right">
+                                    <button type="submit" class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>
                             

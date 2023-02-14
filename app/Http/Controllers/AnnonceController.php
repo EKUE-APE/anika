@@ -63,6 +63,8 @@ class AnnonceController extends Controller
         $entreprises = DB::table('companies')
         ->join('users', 'users.id', '=', 'companies.user_id')
        // ->join('roles','roles.id', '=', 'users.roles' )
+       ->where('deleted_at','=',NULL)
+
             ->select ('companies.*',
                 'users.name as nom')
             ->get();
@@ -108,6 +110,7 @@ class AnnonceController extends Controller
         $user->price_min = $request->input('price_min');
         $user->prixmax = $request->input('prixmax');
         $user->nbrePersonne = $request->input('nbrePersonne');
+        $user->type = 'Auberge';
         $user->save();
 
         $services = $request->input('service');
@@ -172,7 +175,7 @@ class AnnonceController extends Controller
         }
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Auberge bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
 
     
@@ -200,6 +203,7 @@ class AnnonceController extends Controller
         $user->price_min = $request->input('price_min');
         $user->prixmax = $request->input('prixmax');
         $user->nbrePersonne = $request->input('nbrePersonne');
+        $user->type = 'Logement';
 
         $user->save();
 
@@ -266,7 +270,7 @@ class AnnonceController extends Controller
         //dd($user);
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Logement bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
 
     public function storeHotel(Request $request)
@@ -286,7 +290,7 @@ class AnnonceController extends Controller
         
         $user->prixmax = $request->input('prixmax');
         $user->nbrePersonne = $request->input('nbrePersonne');
-      
+        $user->type = 'hotel';
         $user->save();
         $services = $request->input('service');
         //dd($request);
@@ -347,7 +351,7 @@ class AnnonceController extends Controller
         }
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Hotel bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
 
     public function storeRestaurant(Request $request)
@@ -357,7 +361,7 @@ class AnnonceController extends Controller
         $user->owner_id = $request->name;
 
         $user->description = $request->input('description');       
-        //dd($request);
+        $user->type = 'Restaurant';
         $user->save();
         $services = $request->input('specialite');
         foreach($services as $service) 
@@ -500,7 +504,7 @@ class AnnonceController extends Controller
             
         }
 
-        return redirect()->route('acces')->with('success','Restaurant bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
     public function storeDessert(Request $request)
     {
@@ -534,7 +538,7 @@ class AnnonceController extends Controller
       
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Hotel bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
     public function storeEntre(Request $request)
     {
@@ -588,7 +592,7 @@ class AnnonceController extends Controller
        
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Hotel bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
 
     public function addPatisserie()
@@ -613,7 +617,7 @@ class AnnonceController extends Controller
         $user->produit = $request->input('produit');
         $user->price_min = $request->input('price_min');        
         $user->prixmax = $request->input('prixmax');
-        //dd($request);
+        $user->type = 'Patisserie';
         $user->save();
         $services = $request->input('service');
         //dd($services);
@@ -691,7 +695,7 @@ class AnnonceController extends Controller
         //dd($user);
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Patisserie bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
     public function addBar()
     {
@@ -715,8 +719,7 @@ class AnnonceController extends Controller
         $user->capacite = $request->input('capacite');
         $user->price_min = $request->input('price_min');
 
-        //$user->image_name = $request->input('image_name');
-        
+        $user->type = 'Bar';        
         $user->prixmax = $request->input('prixmax');
         //dd($request);
         $user->save();
@@ -772,7 +775,7 @@ class AnnonceController extends Controller
                 Image::create([
                             'product_id'=>$user->id,
                             'image'=>$path,
-                            'type'=>'bar'
+                            'type'=>'Bar'
                 ]);
                
             }
@@ -781,7 +784,7 @@ class AnnonceController extends Controller
         //dd($user);
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Bar bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
      public function addBoite()
     {
@@ -789,7 +792,7 @@ class AnnonceController extends Controller
         ->where('user_id','=',Auth::user()->id)
         ->get();
         $equip_vie_noct = DB::table('value_references')
-        ->where('idname','=',9)
+        ->where('idname','=',27)
         ->get();
         $comodites = DB::table('value_references')
         ->where('idname','=',9)
@@ -797,7 +800,7 @@ class AnnonceController extends Controller
         $comodites = DB::table('value_references')
         ->where('idname','=',9)
         ->get();
-        return view('Annonce.addBoitee',compact('entreprises','equip_vie_noct','comodites'));
+        return view('Annonce.addBoite',compact('entreprises','equip_vie_noct','comodites'));
     }  
     public function storeLocation(Request $request)
     {
@@ -807,7 +810,7 @@ class AnnonceController extends Controller
         $user->kilometrage = $request->input('kilometrage');
         $user->nbre_porte = $request->input('nbre_porte');
         $user->condition = $request->input('condition');
-        
+        $user->type = 'Location';
         $user->nbre_place = $request->input('nbre_place');
         $user->anne = $request->input('anne');
         $user->price_min = $request->input('price_min');
@@ -892,14 +895,14 @@ class AnnonceController extends Controller
                 Image::create([
                             'product_id'=>$user->id,
                             'image'=>$path,
-                            'type'=>'location'
+                            'type'=>'Location Véhicule'
                 ]);
                
             }
             
         }
 
-        return redirect()->route('acces')->with('success','Location bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
     public function addFastFood()
     {
@@ -921,8 +924,7 @@ class AnnonceController extends Controller
         $user->produit = $request->input('produit');
         $user->price_min = $request->input('price_min');
 
-        //$user->image_name = $request->input('image_name');
-        
+        $user->type = 'Fast Food';        
         $user->prixmax = $request->input('prixmax');
          $user->save();
         $services = $request->input('service');
@@ -998,7 +1000,7 @@ class AnnonceController extends Controller
        
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Fast Food bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
     public function addLocation()
     {
@@ -1022,7 +1024,7 @@ class AnnonceController extends Controller
 
         $user->capacite = $request->input('capacite');
         $user->price_min = $request->input('price_min');
-
+        $user->type = 'Boite';
       
         //dd($user);
         $user->prixmax = $request->input('prixmax');
@@ -1041,7 +1043,7 @@ class AnnonceController extends Controller
         }
 
         
-        $equipement_vies = $request->equipement_vie;
+         $equipement_vies = $request->equipement_vie;
 
        foreach($equipement_vies as $equipement_vie) 
         {
@@ -1050,7 +1052,7 @@ class AnnonceController extends Controller
                 'type_ref_id' => intval($equipement_vie),
                 'boite_id' =>$user->id,
             ]); 
-        } 
+        }  
         $type_bars = $request->type_bar;
         //dd($type_bars);
 
@@ -1111,19 +1113,88 @@ class AnnonceController extends Controller
         
         //dd('salut');
 
-        return redirect()->route('acces')->with('success','Boite de Nuit bien enrégistrer');
+        return redirect()->route('acces')->with('success',' Enregistrement effectué');
     }
 
     public function allAnnonce()
     {
-        $annonces =DB::table('companies')
-            ->join('users', 'users.id', '=', 'companies.user_id')
-            ->join('roles','roles.id', '=', 'users.roles' )
-            ->select ('users.*',
-                'companies.name as compagnie',
-                'roles.nom as nom')
+        $annonces =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('boites','companies.id', '=', 'boites.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'boites.*')
             ->get();
-        return view('Annonce.allAnnonces',compact('annonces'));
+            $auberges =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('auberges','companies.id', '=', 'auberges.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'auberges.*')
+            ->get();
+            $hotels =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('hotels','companies.id', '=', 'hotels.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'hotels.*')
+            ->get();
+            $bars =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('bars','companies.id', '=', 'bars.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'bars.*')
+            ->get();
+            $locations =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('locations','companies.id', '=', 'locations.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'locations.*')
+            ->get();
+            $logements =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('logements','companies.id', '=', 'logements.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'logements.*')
+            ->get();
+            $restaurants =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('restaurants','companies.id', '=', 'restaurants.owner_id' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'restaurants.*')
+            ->get();
+            
+            $patisseries =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('patisseries','companies.id', '=', 'patisseries.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'patisseries.*')
+            ->get();
+                     
+            $fast_food =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('fast_food','companies.id', '=', 'fast_food.name' )
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'fast_food.*')
+            ->get();
+            //dd($annonces);
+        return view('Annonce.allAnnon',compact('patisseries','fast_food','annonces','restaurants','logements','locations','bars','hotels','auberges'));
+    }
+
+    public function storeExpiration(Request $request)
+    {
+        $contact = Expiration::create($request->all());
+        if ($contact) {
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false]);
+        }
     }
  
 }

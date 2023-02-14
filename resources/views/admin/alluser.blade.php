@@ -1,16 +1,41 @@
 
 @extends('layout.app')
+<style>
+#example tfoot {
+ 
+   bottom: 0;
+  position: absolute;
+}
+#example .dataTables_paginate {
+  bottom: 5000px; /* taille en pixels fixe */
+  position: fixed;
+}
+#example {
+  border: 1px solid black;
+}
+
+#example td {
+  border: 1px solid black;
+}
+#example th {
+    text-decoration-color: rgb(245, 245, 220)
+    border: 3px solid rgb(172, 141, 141);
+    background-color: rgb(126, 157, 167);
+
+}
+
+</style>
 @section('section')
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Références</h4>
-        </div>
-        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
+             <ol class="breadcrumb">
                 <li><a href="index.html">Reférences</a></li>
                 <li class="active">Recherche Références</li>
             </ol>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+           
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -23,12 +48,12 @@
                 
                     <div class="card-header">
                         <h4>Liste des Références </h4>
-                        <a href="{{ url('addReference') }}" class="btn theme-btn">Ajouter une entreprise</a>
+                        <a href="{{ url('addReference') }}" class="btn theme-btn">Ajouter Une Référence</a>
                     </div>
                     
                     <div class="card-body">
                   
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="display: flex; flex-direction: column; height: 500px;">
                             <table id="example" class="table table-striped table-2 table-hover">
                                 <thead>
                                     <tr>
@@ -63,7 +88,7 @@
                                         <td>
                                             <a href="updaterefer/{{$herbergement->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="deleterefer/{{$herbergement->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
+                                                <a href="deleterefer/{{$herbergement->id}}" id="delete-button" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -72,6 +97,9 @@
                                     
                                     
                                 </tbody>
+                                  <tfoot style="flex-shrink: 0;">
+       
+    </tfoot>
                             </table>
                         </div>
                       
@@ -94,6 +122,15 @@
 
 @section('js')
 <script>
+  document.getElementById("delete-button").addEventListener("click", function(event) {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet élément?")) {
+      event.preventDefault();
+    }
+  });
+</script>
+<script>
+
+let headers = document.querySelectorAll("#example th");
 
 
 
@@ -114,14 +151,24 @@ $('#example1').DataTable();
          modal.show();
      }); */
      $(document).ready(function(){
-         $('#example').DataTable({
+         $('#example').DataTable(
+             {
              "order": [[ 0, "desc" ]],
              "pageLength":50,
+               "scrollY": "200px",
+        "scrollCollapse": true, 
+        fixedHeader: {
+            header: true,
+            footer: true,
+             offsetTop: 5000
+        },
+        
+        
              "oLanguage": {
                  
                  "sProcessing":     "Traitement en cours...",
                  "sSearch":         "Rechercher&nbsp;:",
-                 "sLengthMenu":     "Afficher _MENU_ &eacute;l&eacute;ments",
+                 "sLengthMenu":     "Afficher _MENU_",
                  "sInfo":           "Affichage de l'&eacute;l&eacute;ment _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
                  "sInfoEmpty":      "Affichage de l'&eacute;l&eacute;ment 0 &agrave; 0 sur 0 &eacute;l&eacute;ment",
                  "sInfoFiltered":   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
@@ -141,6 +188,7 @@ $('#example1').DataTable();
                      "sSortDescending": ": activer pour trier la colonne par ordre d&eacute;croissant"
                  }
              }
+          
          });
      });
  

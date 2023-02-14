@@ -152,7 +152,8 @@
 								</div>
                                 <div class="form-group">
 									<label>Téléphone:</label>
-									<input type="text" name="phone" class="form-control" placeholder="+228 95647830">
+<input type="tel" maxlength="14" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" name="phone" id="phone" class="form-control" font-style: italic; placeholder="+228 95647830">
+
 								</div>
                                 
                                 
@@ -188,7 +189,7 @@
 								
 								<div class="form-group">
 									<select name="profil" class="form-control">
-										<option data-placeholder="Register as a" class="chosen-select">S'inscrire en tant que </option>
+										<option data-placeholder="Register as a" required class="chosen-select">S'inscrire en tant que </option>
 										<option value="2">Professionnel</option>
 										<option value="3">Simple Utilisateur</option>
 									</select>

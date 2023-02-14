@@ -11,6 +11,12 @@ class Company extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
+    protected $guarded = [];  
+   
     protected $dates = ['deleted_at'];
+
+    public function services()
+    {
+        return $this->hasMany(Service::class,'boite_id','id');
+    }
 }

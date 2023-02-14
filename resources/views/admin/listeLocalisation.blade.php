@@ -4,13 +4,14 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Comptes</h4>
+             
+            <ol class="breadcrumb">
+                <li><a href="">Localisation</a></li>
+                <li class="active">Recherche </li>
+            </ol>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li><a href="index.html">Dashboard</a></li>
-                <li class="active">Comptes</li>
-            </ol>
+           
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -22,19 +23,19 @@
                 <div class="card">
                 
                     <div class="card-header">
-                        <h4>Comptes </h4>
-                      
+                        <h3>{{ $userCount }}</h3><h4> Localisation </h4>
+                      <a href="{{ url('addQuartier') }}" class="btn theme-btn">Ajouter un Quartier</a>
                     </div>
                     
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
-                                <thead>
+                            <table id="example" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped text-center">
+                                <thead align="center">
                                     <tr>
-                                        <th>Type d'Annonce</th>						
-                                        <th>Categorie d'Annonce</th>
-                                        <th>Entreprise</th>
-                                        <th>Date de creation</th>
+                                        <th align="center"></th>	
+                                        <th>Pays</th>					
+                                        <th>Ville</th>
+                                        <th>Quartier</th>
                                         
                                         <th>Créateur</th>
                                         
@@ -43,37 +44,29 @@
                                 </thead>
                                 
                                 <tbody>
-                                    @foreach ($users as $user )
+                                    @foreach ($localisations as $pay )
                                     <tr>
                                         <td>
-                                           <span class="custom-checkbox">
-                                            {{($user->name)}}
+                                           <span class="custom-checkbox text-center">
+                                          
                                             </span>
                                         </td>
-                                        <td>{{($user->email)}}</td>                        
-                                        <td>{{($user->phone)}}</td>
-                                         <td>{{($user->nom)}}</td>                                      
-                                        <td>{{($user->created_at)}}</td>                      
+                                         <td>{{($pay->pays)}}</td>
+                                        <td>{{($pay->ville)}}</td>                        
+                                        <td>{{($pay->nomq)}}</td>  
+                                                                
+                                        <td>{{($pay->name)}}</td> 
                                         
                                         <td>
-                                            <a href="updatecompt/{{$user->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
+                                            <a href="updatelocalis/{{$pay->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="Modifier">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="deletecompt/{{$user->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
+                                                <a href="deleteLocalisation/{{$pay->id}}" class="delete" title="" id="delete-button" data-toggle="tooltip" data-original-title="Supprimer">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
                                    
-                              {{--       <div class="card-footer">
-                                        <nav aria-label="Page navigation example">
-                                            <tr>
-                                                <th>Noms</th>						
-                                                <th>Email</th>
-                                                <th>Numéro</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </nav>
-                                    </div> --}}
+                     
                                     
                                 </tbody>
                             </table>
@@ -92,6 +85,14 @@
 
 @section('js')
 <script>
+  document.getElementById("delete-button").addEventListener("click", function(event) {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet élément?")) {
+      event.preventDefault();
+    }
+  });
+</script>
+
+<script>
    /*  $(document).ready(function() {
 $('#example').DataTable();
 } );
@@ -99,10 +100,38 @@ $('#example').DataTable();
     $('.logo').click(function() {
         modal.show();
     }); */
+    console.log('huuuuuuuuuuuuuuuu');
     $(document).ready(function(){
         $('#example').DataTable({
             "order": [[ 0, "desc" ]],
+            scrollY: '200px',
+            scrollCollapse: true,
+            paging: false,
+            columnDefs: [{
+            targets: 0,
+            render: function(data, type, row, meta) {
+                return '<input type="checkbox">';
+            }
+        }],
             "pageLength":50,
+             buttons: [
+                    {
+                        text: 'csv',
+                        extend: 'csvHtml5',
+                    },
+                    {
+                        text: 'excel',
+                        extend: 'excelHtml5',
+                    },
+                    {
+                        text: 'pdf',
+                        extend: 'pdfHtml5',
+                    },
+                    {
+                        text: 'print',
+                        extend: 'print',
+                    },  
+                ],
             "oLanguage": {
                 
                 "sProcessing":     "Traitement en cours...",
@@ -139,7 +168,13 @@ $('#example1').DataTable();
         modal.show();
     });
 </script>
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.flash.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js" type="text/javascript"></script>
 
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>

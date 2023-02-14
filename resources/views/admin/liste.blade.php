@@ -4,13 +4,13 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Comptes</h4>
+            <ol class="breadcrumb">
+                <li><a href="">Comptes</a></li>
+                <li class="active">Recherche</li>
+            </ol>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li><a href="index.html">Dashboard</a></li>
-                <li class="active">Comptes</li>
-            </ol>
+
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -32,7 +32,10 @@
                             <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Noms</th>						
+                                        <th><span class="custom-checkbox">
+                                            
+                                            </span></th>
+                                         <th>Noms</th>						
                                         <th>Email</th>
                                         <th>Numéro</th>
                                         <th>Entreprise</th>
@@ -49,19 +52,20 @@
                                     <tr>
                                         <td>
                                            <span class="custom-checkbox">
-                                            {{($user->name)}}
+                                            
                                             </span>
                                         </td>
+                                           <td>{{($user->name)}} </td> 
                                         <td>{{($user->email)}}</td>                        
                                         <td>{{($user->phone)}}</td>
-                                         <td>{{($user->compagnie)}}</td>    
+                                         <td>{{($user->company_created)}}</td>    
                                          <td>{{($user->nom)}}</td>                                      
                                         <td>{{($user->created_at)}}</td>                      
                                         <td>{{($user->last_login)}}</td> 
                                         <td>
                                             <a href="updatecompt/{{$user->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="edit">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="deletecompt/{{$user->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
+                                                <a href="deletecompt/{{$user->id}}" id="delete-button" class="delete" title="" data-toggle="tooltip" data-original-title="Delete">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -94,6 +98,14 @@
 
 
 @section('js')
+<script>
+  document.getElementById("delete-button").addEventListener("click", function(event) {
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet élément?")) {
+      event.preventDefault();
+    }
+  });
+</script>
+
 <script>
    /*  $(document).ready(function() {
 $('#example').DataTable();

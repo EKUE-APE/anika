@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -19,7 +21,12 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    use AuthenticatesUsers; 
+    public function authenticated(Request $request, $user)
+    {
+    $user->update(['last_login' => Carbon::now()->toDateTimeString()]);
+    //dd($user);
+    }
 
     /**
      * Where to redirect users after login.
@@ -37,4 +44,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+  
+
 }

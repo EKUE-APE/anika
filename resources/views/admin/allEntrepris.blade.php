@@ -4,13 +4,13 @@
 <div id="page-wrapper" >
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-            <h4>Entreprises</h4>
+        <ol class="breadcrumb" style="text-align: left">
+                <li><a href="">Entreprise</a></li>
+                <li class="active">Recherche </li>
+            </ol>
         </div>
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-            <ol class="breadcrumb">
-                <li><a href="">Entreprise</a></li>
-                <li class="active">Recherche Entreprises</li>
-            </ol>
+            
         </div>
         <!-- /.col-lg-12 -->
     </div>              
@@ -31,6 +31,7 @@
                             <table id="example" pageLength="50" class="table table-striped table-2 table-hover table-bordered table-condensed table-striped">
                                 <thead>
                                     <tr>
+                                        <th></th>						
                                         <th>Noms</th>						
                                         <th>N° Whatsapp</th>
                                         <th>Site web</th>
@@ -48,9 +49,10 @@
                                     <tr>
                                         <td>
                                            <span class="custom-checkbox text-center">
-                                            {{($entreprise->name)}}
-                                            </span>
+                                           </span>
                                         </td>
+                                        <td> {{($entreprise->name)}}</td>                        
+
                                         <td>{{($entreprise->phoneWhat)}}</td>                        
                                         <td>{{($entreprise->siteweb)}}</td>
                                          <td>{{($entreprise->nom)}}</td>    
@@ -58,9 +60,9 @@
                                         <td>{{($entreprise->created_at)}}</td>                      
                                         
                                         <td>
-                                            <a href="updatecompt/{{$entreprise->id}}" class="edit" title="" data-toggle="tooltip" data-original-title="Modifier">
+                                            <a href="{{ route('updateEntreprise',['id' => $entreprise->id]) }}" class="edit" title="" data-toggle="tooltip" data-original-title="Modifier">
                                                 <i class="fa fa-pencil"></i></a>
-                                                <a href="AlldeleteEntreprise/{{$entreprise->id}}" class="delete" title="" data-toggle="tooltip" data-original-title="Supprimer">
+                                                <a href="{{ route('AlldeleteEntrepris',['id' => $entreprise->id]) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet enregistrement ?')" id="delete-button" class="delete" title="" data-toggle="tooltip" data-original-title="Supprimer">
                                                 <i class="fa fa-trash"></i></a>
                                         </td>
                                     </tr>
@@ -84,6 +86,16 @@
 
 
 @section('js')
+<script>
+  //document.getElementById("delete-button").addEventListener("click", function(event) {
+    document.getElementsByClassName("delete").addEventListener("click", function(event) {
+
+    if (!confirm("Êtes-vous sûr de vouloir supprimer cet élément?")) {
+      event.preventDefault();
+    }
+  });
+</script>
+
 <script>
    /*  $(document).ready(function() {
 $('#example').DataTable();

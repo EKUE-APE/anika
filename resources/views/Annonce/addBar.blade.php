@@ -1,19 +1,30 @@
 
 @extends('layout.app')
 <style>
-    #previewContainer {
+     #previewContainer {
         width: 200px;
     height: 200px;
-    border: 1px solid black;
+    border: 5px solid black;
     overflow: hidden;
     float: left;
     margin-right: 100px;
+    margin-top: 50px;
+    
+
     }
     #previewContainer img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
+   #removeImageButton {
+       background-color: blue;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+   }
   
   
 </style>
@@ -42,23 +53,23 @@
                     </div>
                     
                     <div class="card-body">
-                        @if (Session::has('message'))
+    @if (Session::has('message'))
 
-                        <div class="alert alert-success alert-dismissible" role="alert">
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;>
+                                <div class="alert alert-success alert-dismissible" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                            </button>
-                       {{ $message }}
-                        </div>
+                                    </button>
+                               {{ $message }}
+                                </div>
 
-                        @endif
+                                @endif
                         <form class="form-horizontal" enctype="multipart/form-data" method="POST" action="{{ route('storeBar') }}">
                         @csrf
 
                         <div class="form-group">
                             <label class="col-md-2 col-sm-2">Entreprise:</label>
                             <div class="col-md-4 col-sm-3">
-                                <select class="form-control" id="name" name="name">
+                                <select class="form-control" id="name" required name="name">
                                     <optgroup label="Choisir Le nom de l'entreprise">
                                         @foreach($entreprises as $companie)
                                             <option value="{{$companie->id}}">{{$companie->name}}</option>
@@ -68,7 +79,7 @@
                             </div>
                             <label class="col-md-2 col-sm-2">Type de Bar:</label>
                             <div class="col-md-4 col-sm-3">
-                                    <select class="selectpicker form-control col-md-12 col-sm-3" id="type_bar" name="type_bar[]" multiple aria-label="Default select example" data-live-search="true">
+                                    <select class="selectpicker form-control col-md-12 col-sm-3" required id="type_bar" name="type_bar[]" multiple aria-label="Default select example" data-live-search="true">
                                         <optgroup label="Choisir Les equipements">
                                             @foreach($comodites as $pa)
                                             <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -83,17 +94,17 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Prix Min:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="price_min" placeholder="345678">        
+                                    <input type="number" class="form-control" name="price_min" required placeholder="345678">        
                                 </div>
                                 <label class="col-md-2 col-sm-2">Prix Maximum :</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" name="prixmax" placeholder="10000000">
+                                    <input type="number" class="form-control" name="prixmax" required placeholder="10000000">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Type de Musique:</label>
                                 <div class="col-md-10 col-sm-9">
-                                        <select class="selectpicker form-control col-md-12 col-sm-3" id="type_musique" name="type_musique[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <select class="selectpicker form-control col-md-12 col-sm-3" required id="type_musique" name="type_musique[]" multiple aria-label="Default select example" data-live-search="true">
                                             <optgroup label="Choisir Les equipements">
                                                 @foreach($comodites as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -105,7 +116,7 @@
                              <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Capacité d'Acceuil:</label>
                                 <div class="col-md-4 col-sm-3">
-                                    <input type="number" class="form-control" placeholder="5" name="capacite">
+                                    <input type="number" class="form-control" placeholder="5" required name="capacite">
                                 </div>
                             
                             </div>
@@ -114,7 +125,7 @@
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-2">Equipement Vie Nocturne:</label>
                                 <div class="col-md-4 col-sm-3">
-                                        <select class="selectpicker form-control col-md-12 col-sm-3" id="type_vie" name="type_vie[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <select class="selectpicker form-control col-md-12 col-sm-3" required id="type_vie" name="type_vie[]" multiple aria-label="Default select example" data-live-search="true">
                                             <optgroup label="Choisir Les equipements">
                                                 @foreach($comodites as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -125,7 +136,7 @@
 
                                 <label class="col-md-2 col-sm-2">Comodités:</label>
                                 <div class="col-md-4 col-sm-3">
-                                        <select class="selectpicker form-control col-md-12 col-sm-3" id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
+                                        <select class="selectpicker form-control col-md-12 col-sm-3" required id="service" name="service[]" multiple aria-label="Default select example" data-live-search="true">
                                             <optgroup label="Choisir Les equipements">
                                                 @foreach($comodites as $pa)
                                                 <option value="{{$pa->id}}">{{$pa->valeurajout}}</option>
@@ -155,10 +166,14 @@
                                 
                           
                             </div> 
-                                                          <div id="previewContainerContainer"></div>
+   <div class="form-group">
+  <div id="previewContainerContainer" class="card-body col-md-12 col-sm-12">
+                                
+                            </div>
+                            </div>
 
                             <div class="form-group">
-                                <div class="col-md-12 col-sm-12 text-center">
+                                <div class="col-md-12 col-sm-12 text-right">
                                     <button type="submit" onclick="validate()" class="btn theme-btn">Enrégistrer</button>
                                 </div>
                             </div>
@@ -191,7 +206,7 @@
             previewContainer.id = 'previewContainer';
             const removeImageButton = document.createElement('div');
             removeImageButton.id = 'removeImageButton';
-            removeImageButton.innerText = 'Remove';
+            removeImageButton.innerText = 'Supprimer';
             removeImageButton.addEventListener('click', function() {
               previewContainer.remove();
             });
