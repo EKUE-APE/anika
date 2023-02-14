@@ -152,7 +152,7 @@
 								</div>
                                 <div class="form-group">
 									<label>Téléphone:</label>
-<input type="tel" maxlength="14" pattern="^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$" name="phone" id="phone" class="form-control" font-style: italic; placeholder="+228 95647830">
+                                    <input id="mask" type="tel" class="form-control" name="phone" placeholder="(+229) 03294828">
 
 								</div>
                                 
@@ -447,6 +447,14 @@
 			<a id="back2Top" class="theme-bg" title="Back to top" href="#"><i class="ti-arrow-up"></i></a>
 			
 			<!-- START JAVASCRIPT -->
+			<script>
+				console.log('oiu');
+					  // var phoneMask = IMask(document.querySelector('input'), {
+					  var phoneMask = IMask(document.getElementById('mask'), {
+							  mask: "(+000) 00 00 00 00"
+						  });
+			  
+					</script>
 			<script src="{{ asset('assetsuser/js/jquery.min.js') }}"></script>
 			<script src="{{ asset('assetsuser/plugins/js/bootstrap.min.js') }}"></script>
 			<script src="{{ asset('assetsuser/plugins/js/bootsnav.js') }}"></script>
