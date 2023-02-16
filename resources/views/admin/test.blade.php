@@ -65,7 +65,7 @@
                                {{ $message }}
                                 </div>
 
-                                @endif
+                            @endif
 
                                 <form class="form-horizontal" method="POST" action="{{ route('store') }}">
                                     @csrf

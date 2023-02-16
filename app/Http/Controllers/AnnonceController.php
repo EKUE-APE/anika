@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Carbon\Carbon;
+use App\Models\Expiration;
 use App\Models\FastFood;
 use App\Models\Auberge;
 use App\Models\Bar;
@@ -9,6 +10,8 @@ use App\Models\Logement;
 use App\Models\Patisserie;
 use App\Models\Hotel;
 use App\Models\Restaurant;
+
+
 
 use App\Models\Service;
 use App\Models\EquipementVie;
@@ -1121,10 +1124,13 @@ class AnnonceController extends Controller
         $annonces =DB::table('users')
             ->join('companies', 'users.id', '=', 'companies.user_id')
             ->join('boites','companies.id', '=', 'boites.name' )
+            ->leftjoin('expirations','expirations.annonce_id','=','boites.id')
             ->select ('users.name as utilisateur',
-                'companies.name as entreprise',
+                'companies.name as entreprise','boites.id as maman','expirations.active as active','expirations.date as date',
                 'boites.*')
             ->get();
+           // dd($annonces);
+
             $auberges =DB::table('users')
             ->join('companies', 'users.id', '=', 'companies.user_id')
             ->join('auberges','companies.id', '=', 'auberges.name' )
@@ -1184,17 +1190,37 @@ class AnnonceController extends Controller
                 'fast_food.*')
             ->get();
             //dd($annonces);
+          /*   foreach ($annonces as $enregistrement) {
+                // Vérifiez si la date dans la colonne date_attribut est antérieure à la date actuelle
+                if (Carbon::parse($enregistrement->date)->lt(Carbon::now())) {
+                    // Si c'est le cas, mettez à jour la colonne valeur_checkbox à 0
+                    $enregistrement->update(['active' => 0]);
+                }
+            } */
+            DB::table('expirations')
+            ->where('date', '<', Carbon::now())
+            ->update(['active' => 0]);
+
         return view('Annonce.allAnnon',compact('patisseries','fast_food','annonces','restaurants','logements','locations','bars','hotels','auberges'));
     }
 
-    public function storeExpiration(Request $request)
+    public function addDate($id)
     {
-        $contact = Expiration::create($request->all());
-        if ($contact) {
-            return response()->json(['success' => true]);
-        } else {
-            return response()->json(['success' => false]);
-        }
+        $user = DB::select('select * from boites where id = ?', [$id]);
+        return view('Annonce.addDatExpiration',compact('user'));
+    }
+    public function storeDate(Request $request , $id)
+    {
+        
+        $user = new Expiration;
+        $user->date = $request->input('date');
+        $user->active = $request->active;
+        $user->type = $request->type;
+        $user->annonce_id = $id;
+        $user->save();
+
+        //dd($user);
+        return redirect()->route('allAnnonce')->with('success',' Enregistrement effectué');
     }
  
 }

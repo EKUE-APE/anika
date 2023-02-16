@@ -145,4 +145,8 @@ Route::get('/export', 'App\Http\Controllers\DeleteController@export')->name('exp
 
 Route::post('/storeExpiration', [App\Http\Controllers\AnnonceController::class, 'storeExpiration'])->name('storeExpiration');
 
+
+Route::post('/storeDate/{id}', [App\Http\Controllers\AnnonceController::class, 'storeDate'])->name('storeDate');
+Route::get('/addDate/{id}', [App\Http\Controllers\AnnonceController::class, 'addDate'])->name('addDate');
+
 });

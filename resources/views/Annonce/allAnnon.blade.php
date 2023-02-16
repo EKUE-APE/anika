@@ -48,17 +48,25 @@
                                          <td>{{($user->created_at)}}</td>  
                                                                         
                                         <td>
-                                         <label class="switch">
+                                            @if (  $user -> active  == 1)
+                                            <label class="switch">
                                             <input type="checkbox" checked >
                                             <span class="slider round"></span>
-                                          </label> 
+                                           </label>
+                                            @else
+                                            <label class="switch">
+                                                <input type="checkbox">
+                                                <span class="slider round"></span>
+                                              </label>
+                                            @endif
+                                          
                                         </td>  
 
-                                        <td><input type="date" class="inputDate"></td> 
+                                        <td>{{($user->date)}}</td> 
                                         <td>{{($user->utilisateur)}}</td> 
                                         <td>
-                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#signin">Ajouter</a>
-
+                                            <a href=" {{ route('addDate',['id' => $user->id]) }}" class="delete" title="" id="delete-button" data-toggle="tooltip"  class="delete" title="" id="delete-button" data-toggle="tooltip" data-original-title="Ajouter" >
+                                            <i class="fa fa-plus"></i></a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -274,8 +282,8 @@
                             <input type="date" id="date" class="form-control" name="date" placeholder="Username">
                         </div>
                         <div class="form-group">
-                            <label>Date d'expiration</label>
-                            <input type="checkbox" id="checked" class="form-control" name="checked" checked >
+                            <label>Active</label>
+                            <input type="checkbox" value="1" id="checked" class="form-control" name="checked" checked >
                             <span class="slider round"></span>
                         </div>
                         <div class="center">
@@ -297,14 +305,15 @@
 <script>
     $(document).ready(function(){
         $("#contactForm").submit(function(e){
-            e.preventDefault();
+          
+console.log('ggggg');  e.preventDefault();
             $.ajax({
                 type: "POST",
                 url: "{{ route('storeExpiration') }}",
                 data: $("#contactForm").serialize(),
                 success: function(response) {
                     if (response.success) {
-                        $("#contactModal").modal("hide");
+                        $("#signin").modal("hide");
                         $("#contactForm")[0].reset();
                         alert("Votre message a été envoyé avec succès.");
                     } else {

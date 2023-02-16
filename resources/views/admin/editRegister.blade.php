@@ -12,7 +12,7 @@
                 <li class="active">Comptes</li>
             </ol>
         </div>
-        <!-- /.col-lg-12 -->
+        <!-- /.col-lg-12 --> 
     </div>              
      <!-- /. ROW  -->
     <div id="page-inner">
@@ -26,16 +26,16 @@
                     </div>
                     
                     <div class="card-body">
-                            @if (Session::has('message'))
+                        @if (Session::has('message'))
 
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;
 
-                                    </button>
-                               {{ $message }}
-                                </div>
+                            </button>
+                       {{ $message }}
+                        </div>
 
-                                @endif
+                         @endif
                         <form class="form-horizontal" method="POST" action="/update/{{$structure[0]->id}}">
                         @csrf
                             <div class="form-group">
@@ -59,20 +59,25 @@
 
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Mot de Passe:</label>
-                                <div class="col-md-10 col-sm-9">
+                                <div class="col-md-4 col-sm-3">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                 </div>
                             </div>
+
+                           
+
+
                             <div class="form-group">
                                 <label class="col-md-2 col-sm-3">Profil:</label>
                                 <div class="col-md-10 col-sm-9">
-                                    <select name="profil" class="form-control">
+                                    <select name="profil" required class="form-control">
 										<option data-placeholder="Register as a" class="chosen-select">S'inscrire en tant que </option>
 										<option value="1">Professionnel</option>
 										<option value="2">Admin</option>
 									</select>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="col-md-12 col-sm-12 text-right">
                                     <button type="submit" class="btn btn-primary">
@@ -82,8 +87,8 @@
                             </div>
                             
                         </form>
-                    </div>
-                    
+                
+        </div>
                 </div>
             </div>
         </div>
