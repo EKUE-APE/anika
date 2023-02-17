@@ -34,6 +34,8 @@ Route::post('/editEntreprise/{id}', 'App\Http\Controllers\AdminController@editEn
 Route::get('/dashboard', 'App\Http\Controllers\AdminController@dashboard')->name('dashboard');
 
 Route::get('/comptes', 'App\Http\Controllers\AdminController@comptes')->name('comptes');
+Route::get('/comptesProfil', 'App\Http\Controllers\AdminController@comptesProfil')->name('comptesProfil');
+
 Route::get('/allcomptes', 'App\Http\Controllers\AdminController@allcomptes')->name('allcomptes');
 
 Route::post('/store', 'App\Http\Controllers\AdminController@store')->name('store');
@@ -97,9 +99,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
     
 Route::get('/allEntreprise', [App\Http\Controllers\AnnonceController::class, 'allEntreprise'])->name('allEntreprise');
+Route::get('/allEntrepriseProfil', [App\Http\Controllers\AnnonceController::class, 'allEntrepriseProfil'])->name('allEntrepriseProfil');
 
 Route::get('/acces', [App\Http\Controllers\AnnonceController::class, 'acces'])->name('acces');
 Route::get('/allAnnonce', [App\Http\Controllers\AnnonceController::class, 'allAnnonce'])->name('allAnnonce');
+Route::get('/allAnnonceProfil', [App\Http\Controllers\AnnonceController::class, 'allAnnonceProfil'])->name('allAnnonceProfil');
 
 Route::get('/addHotel', [App\Http\Controllers\AnnonceController::class, 'addHotel'])->name('addHotel');
 Route::post('/storeHotel', [App\Http\Controllers\AnnonceController::class, 'storeHotel'])->name('storeHotel');

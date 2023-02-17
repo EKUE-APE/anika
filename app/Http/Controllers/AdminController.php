@@ -554,8 +554,19 @@ class AdminController extends Controller
             return redirect('allReference')->with('success','Enrégistrement Effectué');
     }
 
-
-
+    public function comptesProfil()
+    {
+                $users = DB::table('roles')
+                ->join('users','users.roles', '=', 'roles.id' )
+                ->leftJoin('companies', 'users.id', '=', 'companies.user_id')
+                ->where('users.id','=',Auth::user()->id)
+                ->select('users.*', 'companies.name as compagnie',
+                    'roles.nom as nom', DB::raw('COALESCE(companies.name, "Non") as company_created'))
+                ->get();
+        //dd($users);
+        $userCount = $users->count();
+        return view('admin.allCompteProfil',compact('users','userCount'));
+    }
 
 
 }

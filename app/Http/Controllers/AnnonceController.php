@@ -75,6 +75,21 @@ class AnnonceController extends Controller
 
         return view('admin.allEntrepris',compact('entreprises','userCount'));
     }
+    public function allEntrepriseProfil()
+    { 
+        $entreprises = DB::table('companies')
+        ->join('users', 'users.id', '=', 'companies.user_id')
+       // ->join('roles','roles.id', '=', 'users.roles' )
+        ->where('companies.deleted_at','=',NULL)
+        ->orWhere('companies.user_id', Auth::user()->id)
+
+            ->select ('companies.*',
+                'users.name as nom')
+            ->get();
+            $userCount = $entreprises->count();
+
+        return view('admin.allCompaniProfil',compact('entreprises','userCount'));
+    }
     public function addHotel()
     {
         $entreprises = DB::table('companies')
@@ -1204,6 +1219,100 @@ class AnnonceController extends Controller
         return view('Annonce.allAnnon',compact('patisseries','fast_food','annonces','restaurants','logements','locations','bars','hotels','auberges'));
     }
 
+    public function allAnnonceProfil()
+    {
+        $annonces =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('boites','companies.id', '=', 'boites.name' )
+            ->leftjoin('expirations','expirations.annonce_id','=','boites.id')
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise','companies.user_id as user_id','boites.id as maman','expirations.active as active','expirations.date as date',
+                'boites.*')
+            ->get();
+           // dd($annonces);
+
+            $auberges =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('auberges','companies.id', '=', 'auberges.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'auberges.*')
+            ->get();
+            $hotels =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('hotels','companies.id', '=', 'hotels.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'hotels.*')
+            ->get();
+            $bars =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('bars','companies.id', '=', 'bars.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'bars.*')
+            ->get();
+            $locations =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('locations','companies.id', '=', 'locations.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'locations.*')
+            ->get();
+            $logements =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('logements','companies.id', '=', 'logements.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'logements.*')
+            ->get();
+            $restaurants =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('restaurants','companies.id', '=', 'restaurants.owner_id' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'restaurants.*')
+            ->get();
+            
+            $patisseries =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('patisseries','companies.id', '=', 'patisseries.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'patisseries.*')
+            ->get();
+                     
+            $fast_food =DB::table('users')
+            ->join('companies', 'users.id', '=', 'companies.user_id')
+            ->join('fast_food','companies.id', '=', 'fast_food.name' )
+            ->where('companies.user_id','=',Auth::user()->id)
+            ->select ('users.name as utilisateur',
+                'companies.name as entreprise',
+                'fast_food.*')
+            ->get();
+            //dd($annonces);
+          /*   foreach ($annonces as $enregistrement) {
+                // Vérifiez si la date dans la colonne date_attribut est antérieure à la date actuelle
+                if (Carbon::parse($enregistrement->date)->lt(Carbon::now())) {
+                    // Si c'est le cas, mettez à jour la colonne valeur_checkbox à 0
+                    $enregistrement->update(['active' => 0]);
+                }
+            } */
+            DB::table('expirations')
+            ->where('date', '<', Carbon::now())
+            ->update(['active' => 0]);
+
+        return view('Annonce.allAnnon',compact('patisseries','fast_food','annonces','restaurants','logements','locations','bars','hotels','auberges'));
+    }
+
     public function addDate($id)
     {
         $user = DB::select('select * from boites where id = ?', [$id]);
@@ -1223,4 +1332,8 @@ class AnnonceController extends Controller
         return redirect()->route('allAnnonce')->with('success',' Enregistrement effectué');
     }
  
+
+
+
+  
 }
